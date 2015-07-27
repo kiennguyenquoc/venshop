@@ -1,0 +1,19 @@
+<% provide(:title, "Product Detail") %>
+<%= render 'layouts/list_categories' %>
+<h1>Product Detail</h1>
+<div class="col-md-9">
+  <div class="thumbnail">
+    <%= image_tag(@product.image, alt: @product.name, class: "img-responsive") %><br>
+    <hr>
+    <div class="caption-full">
+      <h3 class="pull-right">
+        <b>Price: $</b><%= (@product.price/100.00) %>
+        <%= button_to "Add to cart", cart_products_path(product_id: @product.id), :class => "btn btn-primary" %>
+      </h3>
+       <br/>
+      <h4><b><%= @product.name %></b></h4>
+      <%= simple_format(@product.description) %>
+    </div>
+  </div>
+</div>
+

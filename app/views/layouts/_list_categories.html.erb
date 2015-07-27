@@ -1,0 +1,12 @@
+<div class="col-md-3">
+	<p class="lead">VenShop</p>
+	<div class="form-group">
+		<input id="searchinput" class="form-control" type="search" placeholder="Search..." />
+	</div>
+	<div id="searchlist" class="list-group">
+		<% @categories.each do |category|%>
+			<%= link_to "#{ category.name }", category, :class => "list-group-item #{ "active" if category.id == @current_category}"%>
+		<% end %>
+	</div>
+</div>
+

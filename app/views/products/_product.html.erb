@@ -1,0 +1,14 @@
+<div class="col-sm-4 col-lg-4 col-md-4">
+  <div class="thumbnail">
+    <%= image_tag(product.image, alt: product.name, style: 'height: 300px') %>
+    <div class="caption">
+      <div class="div_product_name" style="width: 235px; height: 53px;">
+        <h3 title="<%= product.name %>"><%= truncate(product.name, length: 25) %></h3>
+      </div>
+      <p><b>Price: </b><%= number_to_currency(product.price/100.000) %></p>
+      <p>Quanlity: <%= text_field_tag :thing, type: "number" %>
+        <%= button_to "Add To cart", cart_products_path(product_id: product), :class => "btn btn-primary", :style => "width: 100px" %> <br/><%= link_to "More Info", product, :class => "btn btn-default" %>
+      </p>
+    </div>
+  </div>
+</div>
