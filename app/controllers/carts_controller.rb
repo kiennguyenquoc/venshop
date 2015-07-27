@@ -12,8 +12,10 @@ class CartsController < ApplicationController
 
   def update
     @cart = Cart.find(session[:cart_id])
-    #@user = User.find(@cart.user_id)
+    @user = User.find(@cart.user_id)
+    @user.update(address: params['cart']['address'], phone: params['cart']['phone'])
     @cart.update(cart_params)
+    @cart.update(status: "checkout")
     OrderNotifier.received(@cart).deliver
     session[:cart_id] = nil
     respond_to do |format|

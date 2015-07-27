@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724174931) do
+ActiveRecord::Schema.define(version: 20150727094623) do
 
   create_table "cart_products", force: :cascade do |t|
     t.integer  "cart_id",    limit: 4,             null: false
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20150724174931) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "username",               limit: 255
+    t.string   "phone",                  limit: 255
+    t.string   "address",                limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
