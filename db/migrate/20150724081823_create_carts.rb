@@ -3,7 +3,7 @@ class CreateCarts < ActiveRecord::Migration
     create_table :carts do |t|
       t.integer :user_id
       t.decimal :total_price, :default => 0
-      t.string :status, :default => "Prosess"
+      t.string :status
       t.string :full_name
       t.integer :phone
       t.string :email

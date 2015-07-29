@@ -6,9 +6,14 @@
         <h3 title="<%= product.name %>"><%= truncate(product.name, length: 25) %></h3>
       </div>
       <p><b>Price: </b><%= number_to_currency(product.price/100.000) %></p>
-      <p>Quanlity: <%= text_field :number, class: 'form-control' %>
-        <%= button_to "Add To cart", cart_products_path(product_id: product), :class => "btn btn-primary", :style => "width: 100px" %> <br/><%= link_to "More Info", product, :class => "btn btn-default" %>
-      </p>
+      <%= form_tag cart_products_path do %>
+        <p>
+          <%= hidden_field_tag :product_id, product.id %>
+          Quantity:<b> <%= number_field_tag :quantity, "1", class: 'form-control' %></b><br/>
+          <%= submit_tag "Add To cart", :class => "btn btn-primary", :style => "width: 100px" %>
+        </p>
+      <% end %>
+      <%= link_to "More Info", product, :class => "btn btn-default" %>
     </div>
   </div>
 </div>

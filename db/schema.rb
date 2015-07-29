@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 20150727094623) do
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.decimal  "total_price",               precision: 10, default: 0
-    t.string   "status",      limit: 255,                  default: "Prosess"
+    t.string   "status",      limit: 255
     t.string   "full_name",   limit: 255
     t.integer  "phone",       limit: 4
     t.string   "email",       limit: 255
     t.text     "address",     limit: 65535
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   create_table "categories", force: :cascade do |t|

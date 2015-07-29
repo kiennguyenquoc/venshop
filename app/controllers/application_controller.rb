@@ -8,14 +8,13 @@ class ApplicationController < ActionController::Base
   private
 
   def set_cart
-    @cart = Cart.find(session[:cart_id])
-    rescue ActiveRecord::RecordNotFound
+    @session = session
     if current_user
-      @cart = Cart.create(user_id: current_user.id)
+      @user_id = current_user.id
     else
-      @cart = Cart.create()
+      @user_id = "guess"
     end
-    session[:cart_id] = @cart.id
+    @session[@user_id] ||= {}
   end
 
   def configure_permitted_parameters

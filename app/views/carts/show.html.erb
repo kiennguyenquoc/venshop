@@ -1,43 +1,45 @@
 <% provide(:title, "Your Carts") %>
-<% if notice %>
-  <p id="notice"><%= notice %></p>
-<% end %>
 <h2>Your Cart</h2>
 <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Product name</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Total price</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @cart.cart_products.each do |item| %>
-    <tr>
-      <td><%= item.product.name %></td>
-      <td><%= number_to_currency(item.product.price/100.000) %></td>
-      <td><%= item.number %></td>
-      <td><%= number_to_currency((item.product.price * item.number)/100.000) %></td>
-      <td >
-        <%= link_to 'Delete', cart_product_path(id: item.id), data: { confirm: 'Are you sure?' }, method: :delete,
-        data: { confirm: 'Are you sure?' } %> |
-        <%= link_to 'Update', "#" %>
-    </td>
-    </tr>
+  <% if session[params[:id]] != nil && session[params[:id]] != {} %>
+    <thead>
+      <tr>
+        <th>Product name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% total = 0 %>
+      <% session[params[:id]].each do |key, value| %>
+        <tr>
+          <td><%= Product.find(key).name %>
+          <td><%= number_to_currency(Product.find(key).price/100.00) %></td>
+          <td><%= value %></td>
+          <td><%= number_to_currency(Product.find(key).price/100.000 * value.to_f) %></td>
+          <% total += Product.find(key).price/100.000 * value.to_f %>
+          <td><%= link_to 'Delete', cart_product_path(product_id: key, id: params[:id]), data: { confirm: 'Are you sure?' }, method: :delete,
+            data: { confirm: 'Are you sure?' } %> </td>
+          </tr>
+      <% end %>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td> <%= number_to_currency(total) %></td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Back', products_path, class: "btn btn-danger" %></td>
+        <td> </td>
+        <td><%= button_to 'Empty cart', cart_path(id: params[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to 'Checkout', new_cart_path, class: "btn btn-danger" %></td>
+        <td> </td>
+      </tr>
+    </tbody>
+  <% else %>
+    <h1>Cart Empty</h1>
   <% end %>
-  <tr>
-      <td colspan="3">Total: </td>
-      <td><%= number_to_currency(@cart.total_price/100.000) %></td>
-  </tr>
-  <tr>
-    <td><%= link_to 'Back', products_path, class: "btn btn-danger" %></td>
-    <td> </td>
-    <td><%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
-    <td><%= button_to 'Checkout', edit_cart_path(@cart), method: :get, class: "btn btn-danger" %></td>
-    </tr>
-  </tr>
 
-  </tbody>
 </table>

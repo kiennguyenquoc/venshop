@@ -11,9 +11,13 @@ class ProductsController < ApplicationController
     @categories = Category.all
   end
 
+  def new
+  end
+
   private
 
   def find_product
     @product = Product.find(params[:id])
   end
+
 end

@@ -1,17 +1,26 @@
 class Cart < ActiveRecord::Base
   has_many :cart_products, dependent: :destroy
 
-  def add_product(product_id, price)
-    current_item = cart_products.find_by(product_id: product_id)
-      if current_item
-        current_item.number += 1
-      else
-        current_item = cart_products.build(product_id: product_id, price: price)
-      end
-    current_item
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+    format: { with: VALID_EMAIL_REGEX }
+  validates :full_name, presence: true, length: { maximum: 50 }
+  validates :address, presence: true, length: { maximum: 1000 }
+
+  before_save :downcase_email
+
+
+
+  def downcase_email
+    self.email = email.downcase
   end
 
-  def total_price
-    cart_products.to_a.sum { |item| item.total_price }
+  def check_phone
+    if self.phone.is_a
+      return true
+    else
+      return false
+    end
   end
+
 end
