@@ -1,6 +1,7 @@
 class CartProductsController < ApplicationController
   before_action :set_cart, only: [:create]
   before_action :check_quantity?, only: [:create]
+
   def create
     product = Product.find(params[:product_id])
     if check_quantity?

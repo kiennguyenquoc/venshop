@@ -18,30 +18,35 @@
       <tbody>
         <% product = Product.find(cart_product.product_id) %>
           <tr>
-            <td><%= product.name %>
+            <td><%= product.name %></td>
             <td><%= number_to_currency(product.price/100.00) %></td>
             <td><%= cart_product.number %></td>
             <td><%= number_to_currency(cart_product.price/100.00 * cart_product.number) %></td>
+          </tr>
         <% end %>
         <tr>
           <td colspan="3">Total</td>
-          <td><b><%= number_to_currency(cart_to_user.total_price) %></b></td>
+          <td><b><%= number_to_currency(cart_to_user.total_price/100.00) %></b></td>
         </tr>
         <tr>
-          <td colspan="2">Name: </td>
-          <td colspan="2"> <%= cart_to_user.full_name %>
+          <td>Name: </td>
+          <td colspan="3"> <%= cart_to_user.full_name %>
+        </tr>
+         <tr>
+          <td>E-Mail: </td>
+          <td colspan="3"> <%= cart_to_user.email %>
         </tr>
         <tr>
-          <td colspan="2">Phone: </td>
-          <td colspan="2"> <%= cart_to_user.phone %>
+          <td>Phone: </td>
+          <td colspan="3"> <%= cart_to_user.phone %>
         </tr>
         <tr>
-          <td colspan="2">Address: </td>
-          <td colspan="2"> <%= cart_to_user.address %>
+          <td>Address: </td>
+          <td colspan="3"> <%= cart_to_user.address %>
         </tr>
         <tr>
-          <td colspan="2">Status: </td>
-          <td colspan="2"><%= cart_to_user.status %></td>
+          <td>Status: </td>
+          <td colspan="3"><%= cart_to_user.status %></td>
         </tr>
         <tr>
         <% if cart_to_user.status != "Finish" %>

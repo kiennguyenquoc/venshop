@@ -5,7 +5,7 @@ class CreateCarts < ActiveRecord::Migration
       t.decimal :total_price, :default => 0
       t.string :status
       t.string :full_name
-      t.integer :phone
+      t.string :phone, limit: 15
       t.string :email
       t.text :address
 

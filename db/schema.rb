@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150730023057) do
     t.decimal  "total_price",               precision: 10, default: 0
     t.string   "status",      limit: 255
     t.string   "full_name",   limit: 255
-    t.integer  "phone",       limit: 4
+    t.string   "phone",       limit: 15
     t.string   "email",       limit: 255
     t.text     "address",     limit: 65535
     t.datetime "created_at",                                           null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20150730023057) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "username",               limit: 255
-    t.string   "phone",                  limit: 255
+    t.string   "phone",                  limit: 15
     t.string   "address",                limit: 255
   end
 

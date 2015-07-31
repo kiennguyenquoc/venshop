@@ -11,6 +11,7 @@ class Admin < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
     format: { with: VALID_EMAIL_REGEX },
     uniqueness: { case_sensitive: false }
+    
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -25,4 +26,5 @@ class Admin < ActiveRecord::Base
   def downcase_email
     self.email = email.downcase
   end
+  
 end

@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
   #before_action :find_card, only: [ :create ]
-  #before_action :check_phone, only: [ :create ]
 
   def update
   end
@@ -21,6 +20,7 @@ class CartsController < ApplicationController
       @cart.update(user_id: "", status: "Checkout")
       user_id = 'guess'
     end
+
     if @cart.save
       session[user_id].each do |key, value|
         @product = Product.find(key)
@@ -29,19 +29,14 @@ class CartsController < ApplicationController
         total += @product.price * value.to_f
       end
       @cart.update( total_price: total)
+      update_info_user()
       OrderNotifier.received(@cart).deliver
-      respond_to do |format|
-        format.html { redirect_to products_path,
-        notice: 'Email to send' }
-        format.json { head :no_content }
-      end
-     session[user_id] = nil
+      session[user_id] = nil
+      flash[:success] = "Email to send"
+      redirect_to products_path
     else
-      respond_to do |format|
-        format.html { redirect_to carts_path,
-        notice: 'Errors' }
-        format.json { head :no_content }
-      end
+      flash[:danger] = "Error"
+      redirect_to carts_path
     end
   end
 
@@ -59,8 +54,6 @@ class CartsController < ApplicationController
     redirect_to cart_path(user_id)
   end
 
-
-
   private
 
   def cart_params
@@ -71,8 +64,16 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:id])
   end
 
-  def check_phone
-    params[:phone].is_a?
+  def update_info_user
+    if user_signed_in?
+      user = User.find(current_user.id)
+      if user.phone == nil
+        user.update(phone: params[:cart][:phone])
+      end
+      if user.address == nil
+        user.update(address: params[:cart][:address])
+      end
+    end
   end
 
 end

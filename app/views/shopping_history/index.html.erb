@@ -1,5 +1,5 @@
-<% provide(:title, "User Carts") %>
-<h2>Your Cart: Buyers</h2>
+<% provide(:title, "Shopping History") %>
+<h2>Shopping History: <%= @user.username %>-<%= @user.email %></h2>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -9,10 +9,10 @@
       <th>Total price</th>
     </tr>
   </thead>
-  <% @carts.each do |cart| %>
-    <% cart_products = cart.cart_products %>
+  <% @carts_to_user.each do |cart_to_user| %>
+    <% cart_products = cart_to_user.cart_products %>
     <tr>
-      <td colspan="4"><h4><b>Cart: <%= cart.created_at %></b></h4></td>
+      <td colspan="4"><h4><b>Cart: <%= cart_to_user.created_at %></b></h4></td>
     </tr>
     <% cart_products.each do |cart_product| %>
       <tbody>
@@ -26,34 +26,27 @@
         <% end %>
         <tr>
           <td colspan="3">Total:</td>
-          <td><b><%= number_to_currency(cart.total_price/100.00) %></b></td>
+          <td><b><%= number_to_currency(cart_to_user.total_price/100.00) %></b></td>
         </tr>
         <tr>
           <td>Name: </td>
-          <td colspan="3"> <%= cart.full_name %>
+          <td colspan="3"> <%= cart_to_user.full_name %>
         </tr>
         <tr>
           <td>E-Mail: </td>
-          <td colspan="3"> <%= cart.email %>
+          <td colspan="3"> <%= cart_to_user.email %>
         </tr>
         <tr>
           <td>Phone: </td>
-          <td colspan="3"> <%= cart.phone %>
+          <td colspan="3"> <%= cart_to_user.phone %>
         </tr>
         <tr>
           <td>Address: </td>
-          <td colspan="3"> <%= cart.address %>
+          <td colspan="3"> <%= cart_to_user.address %>
         </tr>
         <tr>
           <td>Status: </td>
-          <td colspan="3"><%= cart.status %></td>
-        </tr>
-        <tr>
-        <% if cart.status != "Finish" %>
-          <td colspan="4" style="text-align:right"><%= button_to 'Next',admin_cart_path(id: cart.id, user_id: "buyers"), method: :put , class: "btn btn-primary" %></td>
-        <% else %>
-          <td colspan="4" style="text-align:right"><%= link_to 'Finished',"#" , class: "btn btn-danger" %></td>
-        <% end %>
+          <td colspan="3"><%= cart_to_user.status %></td>
         </tr>
    <% end %>
         <tr>

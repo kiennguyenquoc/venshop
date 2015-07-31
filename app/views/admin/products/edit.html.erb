@@ -1,6 +1,6 @@
 <% provide(:title, "Edit Products") %>
 <h2 style="text-align: center;">Edit products <%= @product.id %></h2>
-<div class="col-md-9 col-md-offset-3">
+<div class="col-9">
   <%= form_for [:admin, @product] do |f| %>
     <div class="field">
       <%= f.label :name %><br />
