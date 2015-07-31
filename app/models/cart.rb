@@ -19,8 +19,4 @@ class Cart < ActiveRecord::Base
   def downcase_email
     self.email = email.downcase
   end
-
-  def check_valid
-  end
-
 end

@@ -6,12 +6,8 @@ class ProductsController < ApplicationController
     @categories = Category.all
   end
 
-  # GET /products/:id
   def show
     @categories = Category.all
-  end
-
-  def new
   end
 
   private

@@ -8,11 +8,8 @@ class User < ActiveRecord::Base
   :rememberable, :trackable, :validatable,
   :authentication_keys => [:login]
 
-  VALID_PHONE_REGEX = /\d[0-9]\)*\z/
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  validates :phone, length: { maximum: 12 },
-    format: { with: VALID_PHONE_REGEX }
   validates :username, :presence => true, length: { maximum: 50 }, :uniqueness => { :case_sensitive => false }
   validates :email, presence: true, length: { maximum: 255 },
     format: { with: VALID_EMAIL_REGEX },

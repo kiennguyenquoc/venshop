@@ -6,17 +6,11 @@ class CartProductsController < ApplicationController
     product = Product.find(params[:product_id])
     if check_quantity?
       add_product_to_cart(product.id.to_i, params[:quantity].to_i )
-      respond_to do |format|
-        format.html { redirect_to cart_path(id: @user_id),
-        notice: 'Products add to cart' }
-        format.json { head :no_content }
-      end
+      redirect_to cart_path(id: @user_id)
+      flash[:success] = 'Products add to cart'
     else
-      respond_to do |format|
-        format.html { redirect_to cart_path(id: @user_id),
-        notice: 'Errors: Quantity' }
-        format.json { head :no_content }
-      end
+      redirect_to cart_path(id: @user_id)
+        flash[:success] = 'Errors: Quantity'
     end
   end
 
@@ -44,9 +38,11 @@ class CartProductsController < ApplicationController
   end
 
   def check_quantity?
-    if ( params[:quantity].to_i && params[:quantity].to_i > 0 )
+    if params[:quantity].to_i > 0
       return true
-    else false
+    else
+      return false
     end
   end
+
 end

@@ -1,16 +1,10 @@
 class CartsController < ApplicationController
-  #before_action :find_card, only: [ :create ]
-
-  def update
-  end
-
   def new
     @cart = Cart.new
   end
 
   def create
     total = 0
-
     @cart = Cart.new(cart_params)
     @cart.save
     if current_user
@@ -20,7 +14,6 @@ class CartsController < ApplicationController
       @cart.update(user_id: "", status: "Checkout")
       user_id = 'guess'
     end
-
     if @cart.save
       session[user_id].each do |key, value|
         @product = Product.find(key)
@@ -58,10 +51,6 @@ class CartsController < ApplicationController
 
   def cart_params
     params.require(:cart).permit(:full_name, :email, :address, :phone)
-  end
-
-  def find_card
-    @cart = Cart.find(params[:id])
   end
 
   def update_info_user
