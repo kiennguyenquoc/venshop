@@ -1,0 +1,10 @@
+<tr>
+  <td><%= product.id %></td>
+  <td><%= product.name %></td>
+  <td><%= number_to_currency(product.price/100.00) %></td>
+  <td><%= image_tag(product.image, alt: product.name, style: 'height: 50px') %></td>
+  <td><%= Category.find(product.category_id).name %> </td>
+  <th><%= link_to "Delete",  admin_product_path(id: product.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to "Edit", edit_admin_product_path(id: product.id) %>
+  </th>
+</tr>

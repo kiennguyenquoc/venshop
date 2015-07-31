@@ -21,6 +21,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+          <li><%= link_to "Shopping history", shopping_history_index_path %></li>
           <li><%= link_to "Users", "" %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -35,14 +36,14 @@
               </li>
             </ul>
           </li>
-        <% else %>
+        <% end %>
+        <% if admin_signed_in? %>
+          <%= render 'layouts/header_admin' %>
+        <% end %>
+        <% if !admin_signed_in? && !user_signed_in? %>
           <%= link_to "Log in", new_user_session_path, class: "btn btn-lg btn-primary", style: "margin: 2px" %>
         <% end %>
       </ul>
-      <%= form_for("#", html: { class: 'navbar-form navbar-left', role: 'search' })  do |f| %>
-        <%= f.text_field :search, class: 'form-group form-control', placeholder: 'Search' %>
-        <%= f.submit "Submit", class: "btn btn-default" %>
-      <% end %>
     </div>
   </div>
 </nav>

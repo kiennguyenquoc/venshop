@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
   protect_from_forgery
+  before_action :sign_out_all, if: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
@@ -15,6 +16,11 @@ class ApplicationController < ActionController::Base
       @user_id = "guess"
     end
     @session[@user_id] ||= {}
+  end
+
+  def sign_out_all
+    sign_out current_user if current_user
+    sign_out current_admin if current_admin
   end
 
   def configure_permitted_parameters

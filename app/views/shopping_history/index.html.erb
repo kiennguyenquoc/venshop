@@ -1,0 +1,56 @@
+<% provide(:title, "Shopping History") %>
+<h2>Shopping History: <%= @user.username %>-<%= @user.email %></h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total price</th>
+    </tr>
+  </thead>
+  <% @carts_to_user.each do |cart_to_user| %>
+    <% cart_products = cart_to_user.cart_products %>
+    <tr>
+      <td colspan="4"><h4><b>Cart: <%= cart_to_user.created_at %></b></h4></td>
+    </tr>
+    <% cart_products.each do |cart_product| %>
+      <tbody>
+        <% product = Product.find(cart_product.product_id) %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= number_to_currency(product.price/100.00) %></td>
+            <td><%= cart_product.number %></td>
+            <td><%= number_to_currency(cart_product.price/100.00 * cart_product.number) %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="3">Total:</td>
+          <td><b><%= number_to_currency(cart_to_user.total_price/100.00) %></b></td>
+        </tr>
+        <tr>
+          <td>Name: </td>
+          <td colspan="3"> <%= cart_to_user.full_name %>
+        </tr>
+        <tr>
+          <td>E-Mail: </td>
+          <td colspan="3"> <%= cart_to_user.email %>
+        </tr>
+        <tr>
+          <td>Phone: </td>
+          <td colspan="3"> <%= cart_to_user.phone %>
+        </tr>
+        <tr>
+          <td>Address: </td>
+          <td colspan="3"> <%= cart_to_user.address %>
+        </tr>
+        <tr>
+          <td>Status: </td>
+          <td colspan="3"><%= cart_to_user.status %></td>
+        </tr>
+   <% end %>
+        <tr>
+          <td><%= link_to 'Back', :back, class: "btn btn-info" %></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users
+
   get 'carts/index'
+  get 'search' => 'search#search'
 
   root to: "static_pages#home"
 
@@ -11,7 +14,11 @@ Rails.application.routes.draw do
   resources :products
   resources :carts
   resources :cart_products, only: [:create, :destroy]
-  resources :admins
+  resources :shopping_history, only: [:index]
+
+  namespace :admin do
+    resources :products, :carts,  :users
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
