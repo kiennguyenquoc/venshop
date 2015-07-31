@@ -1,6 +1,6 @@
 class Admin::CartsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @users = User.all
   end
@@ -25,4 +25,5 @@ class Admin::CartsController < ApplicationController
     @cart.update(status: status)
     redirect_to admin_cart_path(id: params[:user_id])
   end
+
 end
