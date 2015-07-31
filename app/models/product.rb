@@ -25,6 +25,10 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def self.search(keyword)
+    Product.where("name like '%#{keyword}%'")
+  end
+
   private
 
   def ensure_not_referenced_by_any_cart_product
