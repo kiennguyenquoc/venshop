@@ -7,7 +7,7 @@ class OrderNotifier < ApplicationMailer
   #
   def received(cart)
     @cart = cart
-    mail to: cart.email, subject: 'Pragmatic Store Order Confirmation'
+    mail to: cart.email, subject: 'Venshop - Order Carts'
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
