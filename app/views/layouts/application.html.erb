@@ -8,9 +8,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render 'layouts/header' %>
+   <%= render 'layouts/header' %>
   <div class="container">
     <div class="row">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
       <% if notice %>
         <p class="alert alert-success"><%= notice %></p>
       <% end %>

@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  
+
   default_scope -> { order(created_at: :desc) }
 
   belongs_to :category
@@ -9,8 +9,8 @@ class Product < ActiveRecord::Base
   validates :category_id, presence: true
   validates :image, presence: true, length: { maximum: 1000 }
   validates :description, presence: true, length: { maximum: 65535 }
-  validates :price, numericality: {greater_than_or_equal_to: 0.01}
-  
+
+
   private
 
   def ensure_not_referenced_by_any_cart_product

@@ -1,0 +1,58 @@
+<% provide(:title, "User Carts") %>
+<h2>Your Cart: Buyers</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total price</th>
+    </tr>
+  </thead>
+  <% @carts.each do |cart| %>
+    <% cart_products = cart.cart_products %>
+    <tr>
+      <td colspan="4"><h4><b>Cart: <%= cart.created_at %></b></h4></td>
+    </tr>
+    <% cart_products.each do |cart_product| %>
+      <tbody>
+        <% product = Product.find(cart_product.product_id) %>
+          <tr>
+            <td><%= product.name %>
+            <td><%= number_to_currency(product.price/100.00) %></td>
+            <td><%= cart_product.number %></td>
+            <td><%= number_to_currency(cart_product.price/100.00 * cart_product.number) %></td>
+        <% end %>
+        <tr>
+          <td colspan="3">Total</td>
+          <td><b><%= number_to_currency(cart.total_price) %></b></td>
+        </tr>
+        <tr>
+          <td colspan="2">Name: </td>
+          <td colspan="2"> <%= cart.full_name %>
+        </tr>
+        <tr>
+          <td colspan="2">Phone: </td>
+          <td colspan="2"> <%= cart.phone %>
+        </tr>
+        <tr>
+          <td colspan="2">Address: </td>
+          <td colspan="2"> <%= cart.address %>
+        </tr>
+        <tr>
+          <td colspan="2">Status: </td>
+          <td colspan="2"><%= cart.status %></td>
+        </tr>
+        <tr>
+        <% if cart.status != "Finish" %>
+          <td colspan="4" style="text-align:right"><%= button_to 'Next',admin_cart_path(id: cart.id, user_id: "buyers"), method: :put , class: "btn btn-primary" %></td>
+        <% else %>
+          <td colspan="4" style="text-align:right"><%= link_to 'Finished',"#" , class: "btn btn-danger" %></td>
+        <% end %>
+        </tr>
+   <% end %>
+        <tr>
+          <td><%= link_to 'Back', :back, class: "btn btn-info" %></td>
+        </tr>
+    </tbody>
+</table>

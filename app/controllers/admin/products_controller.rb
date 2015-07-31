@@ -1,0 +1,61 @@
+class Admin::ProductsController < ApplicationController
+  before_action :find_product, only: [:destroy, :edit,:update]
+
+  def index
+    @products = Product.paginate(page: params[:page]).per_page(21)
+    @categories = Category.all
+  end
+
+  def destroy
+    if @product.destroy
+      flash[:success] = "Delete product : Success"
+    else
+      flash[:success] = "Create product : Error"
+    end
+    redirect_to admin_products_path
+  end
+
+  def new
+    @product = Product.new
+    @categories = Category.all
+  end
+
+  def edit
+    @categories = Category.all
+  end
+
+  def create
+    @product = Product.new(name: params[:product][:name],
+      category_id: params[:product][:category_id].to_i,
+      price: params[:product][:price].to_i,
+      image: params[:product][:image],
+      description: params[:product][:description])
+    if @product.save
+      flash[:success] = "Create product : Success"
+      redirect_to admin_products_path
+    else
+      flash[:danger] = "Error: Create product"
+      redirect_to new_admin_product_path
+    end
+  end
+
+  def update
+    if params[:product][:price].to_i > 0
+      @product.update(product_params)
+      flash[:success] = "Update product : Success"
+      redirect_to admin_products_path
+    else
+      flash[:danger] = "Error: Price"
+      redirect_to edit_admin_product_path(id: params[:id])
+    end
+  end
+
+  private
+  def find_product
+   @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:category_id, :name, :price, :image, :description)
+  end
+end
