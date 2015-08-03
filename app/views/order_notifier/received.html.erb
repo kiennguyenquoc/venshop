@@ -1,28 +1,28 @@
 <h1>Venshop - Email confirmation</h1>
 <h2>Your Cart</h2>
 <table class="table table-hover">
-    <thead>
+  <thead>
+    <tr>
+      <th>Product name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% cart_products = @cart.cart_products %>
+    <% cart_products.each do |cart_product| %>
+      <% product = Product.find(cart_product.product_id) %>
       <tr>
-        <th>Product name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% cart_products = @cart.cart_products %>
-      <% cart_products.each do |cart_product| %>
-        <% product = Product.find(cart_product.product_id) %>
-        <tr>
-          <td><%= product.name %>
-          <td><%= number_to_currency(cart_product.price/100.00) %></td>
-          <td><%= cart_product.number %></td>
-          <td><%= number_to_currency(cart_product.price/100.00 * cart_product.number) %></td>
-        </td>
-      <% end %>
-      <tr>
-        <td colspan="3">Total</td>
-        <td> <%= number_to_currency(@cart.total_price/100.00) %></td>
-      </tr>
-    </tbody>
+        <td><%= product.name %>
+        <td><%= number_to_currency(cart_product.price/100.00) %></td>
+        <td><%= cart_product.number %></td>
+        <td><%= number_to_currency(cart_product.price/100.00 * cart_product.number) %></td>
+      </td>
+    <% end %>
+    <tr>
+      <td colspan="3">Total</td>
+      <td> <%= number_to_currency(@cart.total_price/100.00) %></td>
+    </tr>
+  </tbody>
 </table>
