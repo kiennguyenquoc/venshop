@@ -4,7 +4,6 @@ class Product < ActiveRecord::Base
 
   belongs_to :category
   has_many :cart_products
-  before_destroy :ensure_not_referenced_by_any_cart_product
 
   VALID_NUMBER_REGEX = /\A[+-]?\d+\Z/
 
@@ -12,6 +11,9 @@ class Product < ActiveRecord::Base
   validates :image, presence: true, length: { maximum: 1000 }
   validates :description, presence: true, length: { maximum: 65535 }
   validates :price, presence: true, format: { with: VALID_NUMBER_REGEX }
+
+  before_destroy :ensure_not_referenced_by_any_cart_product
+  before_save :convert_data_product
 
   def check_valid
     if self.price < 0
@@ -23,6 +25,7 @@ class Product < ActiveRecord::Base
     if self.image == nil
       return false
     end
+    return true
   end
 
   def self.search(keyword)
@@ -38,5 +41,10 @@ class Product < ActiveRecord::Base
       errors.add(:base, 'Cart products present')
       return false
     end
+  end
+
+  def convert_data_product
+    self.category_id.to_i
+    self.price.to_i
   end
 end

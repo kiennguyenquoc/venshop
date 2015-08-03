@@ -26,11 +26,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(name: params[:product][:name],
-      category_id: params[:product][:category_id].to_i,
-      price: params[:product][:price].to_i,
-      image: params[:product][:image],
-      description: params[:product][:description])
+    @product = Product.new(product_params)
     if @product.check_valid()
       @product.save
       flash[:success] = "Create product : Success"
