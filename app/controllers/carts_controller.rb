@@ -24,8 +24,8 @@ class CartsController < ApplicationController
       flash[:success] = "Email to send"
       redirect_to products_path
     else
-      flash[:danger] = "Error"
-      redirect_to carts_path
+      flash[:danger] = "Error: Create carts"
+      redirect_to :back
     end
   end
 

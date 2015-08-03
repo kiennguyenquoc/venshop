@@ -8,28 +8,17 @@ class Product < ActiveRecord::Base
   VALID_NUMBER_REGEX = /\A[+-]?\d+\Z/
 
   validates :category_id, presence: true
+  validates :name, presence: true
   validates :image, presence: true, length: { maximum: 1000 }
   validates :description, presence: true, length: { maximum: 65535 }
-  validates :price, presence: true, format: { with: VALID_NUMBER_REGEX }
+  validates_numericality_of :price, presence: true, format: { with: VALID_NUMBER_REGEX }, greater_than: 0
 
   before_destroy :ensure_not_referenced_by_any_cart_product
   before_save :convert_data_product
 
-  def check_valid
-    if self.price < 0
-      return false
-    end
-    if self.description == nil
-      return false
-    end
-    if self.image == nil
-      return false
-    end
-    return true
-  end
 
   def self.search(keyword)
-    Product.where("name like '%#{keyword}%'")
+    Product.where("name like '%?%'", keyword)
   end
 
   private
