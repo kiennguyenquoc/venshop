@@ -12,7 +12,7 @@
   <% @carts.each do |cart| %>
     <% cart_products = cart.cart_products %>
     <tr>
-      <td colspan="4"><h4><b>Cart: <%= cart.created_at %></b></h4></td>
+      <td colspan="4"><h4><b>Cart <%= cart.id %>: <%= cart.created_at.to_formatted_s(:long_ordinal) %></b></h4></td>
     </tr>
     <% cart_products.each do |cart_product| %>
       <tbody>

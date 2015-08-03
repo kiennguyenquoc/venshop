@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+
   def new
     @cart = Cart.new
   end
@@ -7,15 +8,10 @@ class CartsController < ApplicationController
     total = 0
     @cart = Cart.new(cart_params)
     @cart.save
-    if current_user
-      @cart.update(user_id: current_user.id, status: "Checkout")
-      user_id = current_user.id
-    else
-      @cart.update(user_id: "", status: "Checkout")
-      user_id = 'guess'
-    end
+    @cart.add_user_id_and_status(current_user)
+    get_user_id()
     if @cart.save
-      session[user_id].each do |key, value|
+      session[@user_id].each do |key, value|
         @product = Product.find(key)
         @cart_product = CartProduct.new(cart_id: @cart.id, product_id: key.to_i, number: value.to_i, price: @product.price)
         @cart_product.save
@@ -24,7 +20,7 @@ class CartsController < ApplicationController
       @cart.update( total_price: total)
       update_info_user()
       OrderNotifier.received(@cart).deliver
-      session[user_id] = nil
+      session[@user_id] = nil
       flash[:success] = "Email to send"
       redirect_to products_path
     else
@@ -51,6 +47,14 @@ class CartsController < ApplicationController
 
   def cart_params
     params.require(:cart).permit(:full_name, :email, :address, :phone)
+  end
+
+  def get_user_id
+    if current_user
+      @user_id = current_user.id
+    else
+      @user_id = 'guess'
+    end
   end
 
   def update_info_user
