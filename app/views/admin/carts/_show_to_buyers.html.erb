@@ -45,14 +45,12 @@
     </tr>
     <tr>
       <td>Status: </td>
-      <td colspan="3"><%= cart.status %></td>
-    </tr>
-    <tr>
-      <% if cart.status != "Finish" %>
-        <td colspan="4" style="text-align:right"><%= button_to 'Next',admin_cart_path(id: cart.id, user_id: "buyers"), method: :put , class: "btn btn-primary" %></td>
+      <td colspan="2"><%= cart.status %></td>
+      <td><% if cart.status != "Finish" %>
+        <%= button_to 'Next',admin_cart_path(id: cart.id, user_id: "buyers"), method: :put , class: "btn btn-primary" %>
       <% else %>
-        <td colspan="4" style="text-align:right"><%= link_to 'Finished',"#" , class: "btn btn-danger" %></td>
-      <% end %>
+        <%= link_to 'Finished',"#" , class: "btn btn-danger" %>
+      <% end %></td>
     </tr>
   <% end %>
   <tr>

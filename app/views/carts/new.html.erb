@@ -1,5 +1,17 @@
 <% provide(:title, "Order") %>
 <div class="row">
+  <% if @cart.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(@cart.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @cart.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
   <div class="col-md-6 col-md-offset-3">
   <h1>Đăng ký thông tin nhận hàng</h1>
     <%= form_for @cart do |f| %>

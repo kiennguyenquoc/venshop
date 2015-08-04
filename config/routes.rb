@@ -9,11 +9,12 @@ Rails.application.routes.draw do
 
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
+  get 'error' => 'static_pages#error'
 
   resources :categories, only: [:index, :show]
   resources :products
   resources :carts
-  resources :cart_products, only: [:create, :destroy]
+  resources :cart_products, only: [:create, :destroy, :update]
   resources :shopping_history, only: [:index]
 
   namespace :admin do

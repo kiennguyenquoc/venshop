@@ -28,4 +28,17 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me) }
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
+
+  def check_page
+    if (params[:page].to_i <= 0)
+      params[:page] = 1
+    end
+    if is_number?(params[:page]) == false
+      params[:page] = 1
+    end
+  end
+
+  def is_number? string
+    true if Float(string) rescue false
+  end
 end

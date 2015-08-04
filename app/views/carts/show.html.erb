@@ -7,6 +7,7 @@
         <th>Product name</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Update</th>
         <th>Total price</th>
         <th>Delete</th>
       </tr>
@@ -17,7 +18,11 @@
         <tr>
           <td><%= Product.find(key).name %>
           <td><%= number_to_currency(Product.find(key).price/100.00) %></td>
-          <td><%= value %></td>
+          <%= form_tag cart_product_path, method: :PATCH do %>
+            <%= hidden_field_tag :product_id, key %>
+            <td><%= number_field_tag :quantity, "#{value}", class: 'form-control', :style => "width: 70px"%></td>
+            <td><%= submit_tag "Update", :class => "btn btn-primary", :style => "width: 70px" %></td>
+          <% end %>
           <td><%= number_to_currency(Product.find(key).price/100.000 * value.to_f) %></td>
           <% total += Product.find(key).price/100.000 * value.to_f %>
           <td><%= link_to 'Delete', cart_product_path(product_id: key, id: params[:id]), data: { confirm: 'Are you sure?' }, method: :delete,
@@ -25,14 +30,11 @@
           </tr>
       <% end %>
       <tr>
-        <td>Total</td>
-        <td></td>
-        <td></td>
+        <td colspan="4">Total</td>
         <td> <%= number_to_currency(total) %></td>
       </tr>
       <tr>
-        <td><%= link_to 'Back', products_path, class: "btn btn-danger" %></td>
-        <td> </td>
+        <td colspan="3"><%= link_to 'Back', products_path, class: "btn btn-danger" %></td>
         <td><%= button_to 'Empty cart', cart_path(id: params[:id]), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         <td><%= link_to 'Checkout', new_cart_path, class: "btn btn-danger" %></td>
         <td> </td>

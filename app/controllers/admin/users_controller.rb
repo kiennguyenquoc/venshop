@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :check_page, only: [:index]
 
   def index
     @users = User.paginate(page: params[:page]).per_page(21)

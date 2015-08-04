@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
 
 
   def self.search(keyword)
-    Product.where("name like '%?%'", keyword)
+    Product.where("name like ?", "%#{keyword}%" )
   end
 
   private

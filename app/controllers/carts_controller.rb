@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-
   def new
     @cart = Cart.new
   end
@@ -24,8 +23,7 @@ class CartsController < ApplicationController
       flash[:success] = "Email to send"
       redirect_to products_path
     else
-      flash[:danger] = "Error: Create carts"
-      redirect_to :back
+      render :new
     end
   end
 

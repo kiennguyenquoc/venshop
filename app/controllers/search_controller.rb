@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+  before_action :check_page, only: [:search]
 
   def search
     if params[:keyword].nil?
