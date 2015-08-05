@@ -45,6 +45,8 @@ class ApplicationController < ActionController::Base
   def find_product
     if params[:id].to_i > (Product.count + 1)
       redirect_to error_path
+    elsif is_number?(params[:id]) == false
+      redirect_to error_path
     else
       @product = Product.find(params[:id])
     end
