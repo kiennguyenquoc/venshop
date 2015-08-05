@@ -11,14 +11,4 @@ class ProductsController < ApplicationController
     @categories = Category.all
   end
 
-  private
-
-  def find_product
-    if params[:id].to_i > (Product.count + 1)
-      redirect_to error_path
-    else
-      @product = Product.find(params[:id])
-    end
-  end
-
 end

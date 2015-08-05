@@ -41,4 +41,13 @@ class ApplicationController < ActionController::Base
   def is_number? string
     true if Float(string) rescue false
   end
+
+  def find_product
+    if params[:id].to_i > (Product.count + 1)
+      redirect_to error_path
+    else
+      @product = Product.find(params[:id])
+    end
+  end
+
 end

@@ -43,10 +43,6 @@ class Admin::ProductsController < ApplicationController
 
   private
 
-  def find_product
-   @product = Product.find(params[:id])
-  end
-
   def product_params
     params.require(:product).permit(:category_id, :name, :price, :image, :description)
   end
