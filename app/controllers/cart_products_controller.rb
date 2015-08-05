@@ -58,11 +58,7 @@ class CartProductsController < ApplicationController
   end
 
   def check_quantity?
-    if params[:quantity].to_i > 0
-      return true
-    else
-      return false
-    end
+    params[:quantity].to_i > 0 ? true : false
   end
 
 end
