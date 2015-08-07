@@ -1,6 +1,6 @@
 <% provide(:title, "Search Products") %>
-<h2 class="text-left">Search Products with keyword: <%= params[:keyword] %> - <%= @products.count %> resulfs</h2>
-
+<h2 class="text-left">Search Products with keyword: <%= params[:keyword] %></h2>
+<%= will_paginate @products %>
 <div class="col-md-12" style="text-align: center;">
   <% if @products!= [] %>
     <% @products.each do |product| %>
@@ -28,4 +28,4 @@
     <h1> Not found</h1>
   <% end %>
 </div>
-
+<div><%= will_paginate @products %></div>

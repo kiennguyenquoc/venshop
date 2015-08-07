@@ -29,7 +29,7 @@ gem 'vacuum', '~> 1.3.0'
 gem "figaro"
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
-
+gem 'solr-ruby'
 
 
 # Use ActiveModel has_secure_password
