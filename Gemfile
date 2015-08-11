@@ -30,6 +30,7 @@ gem "figaro"
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'solr-ruby'
+gem 'rsolr', '~> 1.0.12'
 
 
 # Use ActiveModel has_secure_password

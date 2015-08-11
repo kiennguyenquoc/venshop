@@ -1,4 +1,5 @@
 require 'solr'
+require 'rsolr'
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -44,10 +45,15 @@ class ApplicationController < ActionController::Base
   end
 
   def find_product
-    if params[:id].to_i > (Product.count + 1)
+    if is_number?(params[:id]) == false
       redirect_to error_path
-    elsif is_number?(params[:id]) == false
-      redirect_to error_path
+    elsif !Product.exists?(params[:id])
+      flash[:danger] = "Product not found!"
+      if current_admin
+        redirect_to admin_products_path
+      else
+        redirect_to products_path
+      end
     else
       @product = Product.find(params[:id])
     end

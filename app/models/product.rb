@@ -1,5 +1,4 @@
 class Product < ActiveRecord::Base
-
   default_scope -> { order(created_at: :desc) }
 
   belongs_to :category
@@ -15,7 +14,6 @@ class Product < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_cart_product
   before_save :convert_data_product
-
 
   def self.search(keyword)
     Product.where("name like ?", "%#{keyword}%" )

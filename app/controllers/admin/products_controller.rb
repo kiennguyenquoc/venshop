@@ -1,4 +1,7 @@
 class Admin::ProductsController < ApplicationController
+  require 'net/http'
+  require 'uri'
+
   before_action :find_product, only: [:destroy, :edit,:update]
   before_action :get_categories, only: [:edit,:update, :new,:create]
   before_action :authenticate_admin!
@@ -11,6 +14,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     if @product.destroy
+      Solr.new.delete_solr_index_after_delete_product(params[:id])
       flash[:success] = "Delete product : Success"
     else
       flash[:danger] = "Delete product : Error - Product add to carts"
@@ -25,6 +29,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
+      Solr.new.create_solr_index_after_create_product(@product.id, @product.name, @product.price, @product.description)
       flash[:success] = "Create product : Success"
       redirect_to admin_products_path
     else
@@ -34,6 +39,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      Solr.new.update_solr_index_after_import_product(params[:id], product_params[:name])
       flash[:success] = "Update product : Success"
       redirect_to admin_products_path
     else
@@ -50,4 +56,5 @@ class Admin::ProductsController < ApplicationController
   def get_categories
     @categories = Category.all
   end
+
 end
