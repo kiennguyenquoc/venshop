@@ -37,8 +37,13 @@ class SearchController < ApplicationController
   end
 
   def escape_characters_in_string(keyword)
-    pattern = /(\+|\-|\&|\||\!|\(|\)|\{|\}|\[|\]|\^|\"|\~|\*|\?|\:|\\)/
-    return keyword.gsub(pattern){|match|"\\"  + match}
+    if keyword == ""
+      flash[:danger] = "Keyword is null"
+      redirect_to products_path
+    else
+      pattern = /(\+|\-|\&|\||\!|\(|\)|\{|\}|\[|\]|\^|\"|\~|\*|\?|\:|\ |\\)/
+      return keyword.gsub(pattern){|match|"\\"  + match}
+    end
   end
 
 end
