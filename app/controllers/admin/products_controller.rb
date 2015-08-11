@@ -14,7 +14,7 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     if @product.destroy
-      Solr.new.delete_solr_index_after_delete_product(params[:id])
+      SolrModule.new.delete_solr_index_after_delete_product(params[:id])
       flash[:success] = "Delete product : Success"
     else
       flash[:danger] = "Delete product : Error - Product add to carts"
@@ -29,7 +29,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      Solr.new.create_solr_index_after_create_product(@product.id, @product.name, @product.price, @product.description)
+      SolrModule.new.create_solr_index_after_create_product(@product.id, @product.name, @product.price, @product.description)
       flash[:success] = "Create product : Success"
       redirect_to admin_products_path
     else
@@ -39,7 +39,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      Solr.new.update_solr_index_after_import_product(params[:id], product_params[:name])
+      SolrModule.new.update_solr_index_after_import_product(params[:id], product_params[:name])
       flash[:success] = "Update product : Success"
       redirect_to admin_products_path
     else
