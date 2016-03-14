@@ -31,7 +31,8 @@ gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'solr-ruby'
 gem 'rsolr', '~> 1.0.12'
-
+gem 'config'
+gem 'rails-i18n'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

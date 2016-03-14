@@ -23,7 +23,6 @@ class SearchController < ApplicationController
       product = Product.find(iProduct['id'])
       products << product
     end
-    return products
   end
 
   def escape_characters_in_string(keyword)

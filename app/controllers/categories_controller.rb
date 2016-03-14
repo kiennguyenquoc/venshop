@@ -1,15 +1,11 @@
 class CategoriesController < ApplicationController
    before_action :find_category, only: [:show]
    before_action :check_page, only: [:show]
-
-  def index
-    @categories = Category.all
-  end
+   before_action :get_all_categories, only: [:show, :index]
 
   def show
-    @categories = Category.all
     @current_category = @category.id
-    @products = @category.products.paginate(page: params[:page]).per_page(15)
+    @products = @category.products.paginate(page: params[:page]).per_page(Settings.paginate.category)
   end
 
   private
