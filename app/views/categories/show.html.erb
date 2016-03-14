@@ -1,11 +1,9 @@
 <% provide(:title, "Products to category") %>
-<div class="col-lg-12">
-  <h3 style="text-align: center;">Products to category: <%= @category.name %></h3>
-</div>
 <%= render 'layouts/list_categories' %>
 <div class="col-md-9" style="text-align: center;">
-<%= will_paginate @products %>
   <div class="row">
+  <%= render 'search/search_box' %>
+   <h3 style="text-align: center;">Products to category: <%= @category.name %></h3>
   <%= render @products %>
   </div>
 <%= will_paginate @products %>

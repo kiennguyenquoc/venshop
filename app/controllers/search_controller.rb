@@ -1,16 +1,6 @@
 class SearchController < ApplicationController
   before_action :check_page, only: [:search]
 
-=begin
-  def search
-    if params[:keyword].nil?
-      @products = []
-    else
-      @products = Product.search(params[:keyword]).paginate(page: params[:page]).per_page(18)
-    end
-  end
-=end
-
   def search
     @solr = Solr::Connection.new(Rails.configuration.solr_host.to_s, :autocommit => :on )
     keyword = escape_characters_in_string(params[:keyword])
@@ -33,7 +23,6 @@ class SearchController < ApplicationController
       product = Product.find(iProduct['id'])
       products << product
     end
-    return products
   end
 
   def escape_characters_in_string(keyword)

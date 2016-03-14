@@ -1,13 +1,10 @@
 class Admin::CartsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :get_all_user, only: [:index, :show]
 
-  def index
-    @users = User.all
-  end
 
   def show
     if params[:id] != "buyers"
-      @users = User.all
       @user = User.find(params[:id])
       @carts_to_user = Cart.where(user_id: @user.id)
     else
@@ -17,7 +14,7 @@ class Admin::CartsController < ApplicationController
 
   def update
     @cart = Cart.find(params[:id])
-    if(@cart.status == "Checkout")
+    if @cart.status == "Checkout"
       status = "In process"
     else
       status = "Finish"
@@ -26,4 +23,9 @@ class Admin::CartsController < ApplicationController
     redirect_to admin_cart_path(id: params[:user_id])
   end
 
+  private
+
+  def get_all_user
+    @users = User.all
+  end
 end

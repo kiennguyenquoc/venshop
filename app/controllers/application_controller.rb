@@ -1,22 +1,21 @@
 require 'solr'
 require 'rsolr'
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
 
   protect_from_forgery
   before_action :sign_out_all, if: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
   private
 
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
+  end
+
   def set_cart
     @session = session
-    if current_user
-      @user_id = current_user.id
-    else
-      @user_id = "guess"
-    end
+    current_user ? @user_id = current_user.id : @user_id = "guess"
     @session[@user_id] ||= {}
   end
 
@@ -32,12 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_page
-    if (params[:page].to_i <= 0)
-      params[:page] = 1
-    end
-    if is_number?(params[:page]) == false
-      params[:page] = 1
-    end
+    params[:page] = 1 if params[:page].to_i <= 0 || is_number?(params[:page]) == false
   end
 
   def is_number? string
@@ -49,14 +43,14 @@ class ApplicationController < ActionController::Base
       redirect_to error_path
     elsif !Product.exists?(params[:id])
       flash[:danger] = "Product not found!"
-      if current_admin
-        redirect_to admin_products_path
-      else
-        redirect_to products_path
-      end
+      current_admin ? (redirect_to admin_products_path) : (redirect_to products_path)
     else
       @product = Product.find(params[:id])
     end
+  end
+
+  def get_all_categories
+    @categories = Category.all
   end
 
 end
