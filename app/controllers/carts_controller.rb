@@ -43,7 +43,6 @@ class CartsController < ApplicationController
   end
 
   private
-
   def cart_params
     params.require(:cart).permit(:full_name, :email, :address, :phone)
   end
