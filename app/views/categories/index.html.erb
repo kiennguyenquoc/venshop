@@ -1,8 +1,5 @@
 <% provide(:title, "All Categories") %>
 <h1>All Categories</h1>
-<div class="form-group">
-  <input id="searchinput" class="form-control" type="search" placeholder="Search..." />
-</div>
 <% @categories.each do |category|%>
   <%= link_to "#{ category.name }", category, :class => "list-group-item" %>
 <% end %>
