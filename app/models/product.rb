@@ -22,12 +22,9 @@ class Product < ActiveRecord::Base
   private
 
   def ensure_not_referenced_by_any_cart_product
-    if cart_products.empty?
-      return true
-    else
-      errors.add(:base, 'Cart products present')
-      return false
-    end
+    return true if cart_products.empty?
+    errors.add(:base, 'Cart products present')
+    return false
   end
 
   def convert_data_product

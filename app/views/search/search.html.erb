@@ -1,5 +1,5 @@
 <% provide(:title, "Search Products") %>
-<h2 class="text-left">Search Products with keyword: "<%= params[:keyword] %>" - <%= @products.count %> resulfs</h2>
+<h3 class="text-left">Results search : "<%= params[:keyword] %>" - <%= @products.count %> resulfs</h3>
 
 <div class="col-md-12" style="text-align: center;">
   <% if @products!= [] %>
