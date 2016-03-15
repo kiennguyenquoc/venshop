@@ -1,0 +1,34 @@
+<% provide(:title, "Search Products") %>
+<h2 class="text-left">Search Products with keyword: "<%= params[:keyword] %>" - <%= @products.count %> resulfs</h2>
+
+<div class="col-md-12" style="text-align: center;">
+  <% if @products!= [] %>
+    <% @products.each do |product| %>
+      <div class="product_item">
+        <div class="thumbnail">
+          <%= image_tag(product.image, alt: product.name, class: 'pro_img') %>
+          <div class="caption">
+            <div class="div_product_name">
+              <h4 title="<%= product.name %>"><%= truncate(product.name, length: 25) %></h4>
+            </div>
+            <p><b>Price: </b><%= number_to_currency(product.price/100.000) %></p>
+            <div class="row">
+              <%= form_tag cart_products_path do %>
+                <div class="col-sm-12 div-quantity">Quantity: <%= number_field_tag :quantity, "1", class: 'form-control quantity' %></div>
+                <div class="col-sm-12">
+                  <%= submit_tag "Add to cart", :class => "btn btn-primary btn-add-cart" %>
+                  <%= link_to "More Info", product, :class => "btn btn-default" %>
+                </div>
+                <%= hidden_field_tag :product_id, product.id %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h1> Not found</h1>
+  <% end %>
+</div>
+

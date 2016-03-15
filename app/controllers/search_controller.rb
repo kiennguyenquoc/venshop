@@ -18,15 +18,16 @@ class SearchController < ApplicationController
   end
 
   def get_products(result_products)
-    products = Array.new
+    products = []
     result_products.each do |iProduct|
       product = Product.find(iProduct['id'])
       products << product
     end
+    return products
   end
 
   def escape_characters_in_string(keyword)
-    if keyword == ""
+    if keyword.blank?
       flash[:danger] = "Keyword is null"
       redirect_to products_path
     else

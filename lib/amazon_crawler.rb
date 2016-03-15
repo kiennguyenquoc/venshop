@@ -38,6 +38,8 @@ class AmazonCrawler
         product.price = item["ItemAttributes"]["ListPrice"]["Amount"].to_i
         product.description = item["EditorialReviews"]["EditorialReview"]["Content"]
         product.category = category
+        product.save
+        SolrModule.new.update_solr_index_after_import_product(product.id, product)
       end
     rescue Exception => e
       puts e
