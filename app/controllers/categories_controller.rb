@@ -11,9 +11,7 @@ class CategoriesController < ApplicationController
   private
 
   def find_category
-    if params[:id].to_i > (Category.count + 1)
-      redirect_to error_path
-    elsif is_number?(params[:id]) == false
+    if params[:id].to_i > (Category.count + 1) || is_number?(params[:id]) == false
       redirect_to error_path
     else
       @category = Category.find(params[:id])

@@ -14,10 +14,10 @@ class Admin::CartsController < ApplicationController
 
   def update
     @cart = Cart.find(params[:id])
-    if @cart.status == "Checkout"
-      status = "In process"
+    status = if @cart.status == "Checkout"
+      "In process"
     else
-      status = "Finish"
+      "Finish"
     end
     @cart.update(status: status)
     redirect_to admin_cart_path(id: params[:user_id])

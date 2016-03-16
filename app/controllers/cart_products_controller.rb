@@ -37,15 +37,13 @@ class CartProductsController < ApplicationController
     number ||= 1
     i = 0
     session[@user_id].each do |key, value|
-      if (key == product_id.to_s)
-       session[@user_id][key] = number +value
-       i = 1
-       break
-     end
+      if key == product_id.to_s
+        session[@user_id][key] = number +value
+        i = 1
+        break
+      end
     end
-    if (i == 0)
-      session[@user_id][product_id] = number
-    end
+    session[@user_id][product_id] = number if i == 0
   end
 
   def update_product_to_cart(product_id, number)

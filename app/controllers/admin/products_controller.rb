@@ -38,7 +38,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      SolrModule.new.update_solr_index_after_import_product(params[:id], product_params[:name])
+      SolrModule.new.update_solr_index_after_import_product(params[:id], @product)
       flash[:success] = "Update product : Success"
       redirect_to admin_products_path
     else
