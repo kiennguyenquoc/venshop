@@ -1,49 +1,27 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "VENSHOP", root_path, :class => "navbar-brand" %>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li>
-          <%= link_to "All Products", products_path %>
-        </li>
-        <li>
-          <%= link_to "Categories", categories_path %>
-        </li>
-        <li><%= link_to "Carts", carts_path %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <li><%= link_to "Shopping history", shopping_history_index_path %></li>
-          <li><%= link_to "Users", "" %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", "" %></li>
-              <li><%= link_to "Edit my user", edit_user_registration_path %></li>
-              <li class="divider"></li>
-              <li>
-                <%= link_to "Log out", destroy_user_session_path, method: "delete" %>
-              </li>
-            </ul>
-          </li>
-        <% end %>
-        <% if admin_signed_in? %>
-          <%= render 'layouts/header_admin' %>
-        <% end %>
-        <% if !admin_signed_in? && !user_signed_in? %>
-          <li><%= link_to "Log in", new_user_session_path %></li>
-        <% end %>
-      </ul>
-    </div>
+<header>
+  <div id="top2">
+    <ul class="myaccountmenu">
+      <li><a href="#" class="first">My Account</a></li>
+      <li><%= link_to "Edit my user", edit_user_registration_path %></li>
+      <li><%= link_to "All Products", products_path %></li>
+      <li><%= link_to "Carts", carts_path %></li>
+      <li><%= link_to "Categories", categories_path %></li>
+       <li><%= link_to "Shopping history", shopping_history_index_path %></li>
+      <% if !admin_signed_in? && !user_signed_in? %>
+        <li class="login"><%= link_to "Log in", new_user_session_path %></li>
+      <% else %> 
+        <li class="login"><%= link_to "Log out", destroy_user_session_path, method: "delete" %></li>
+      <% end %>
+    </ul>
+    <div id="login-box" class="login-popup"></div>
   </div>
-</nav>
+  <div id="top3">
+      <h1 class="logo"><%= link_to "Shopy mart", root_path %></h1>
+      <form action="#" method="post" class="search_bar">
+          <fieldset>
+            <input type="text" name="search" class="search" value="Enter a keywords..." onBlur="if (this.value == ''){this.value = 'Enter a keywords...'; }" onFocus="if (this.value== 'Enter a keywords...') {this.value = ''; }" />
+            <input type="submit" name="submit" value="Search" class="submit" />
+          </fieldset>
+      </form>
+  </div>
+</header>

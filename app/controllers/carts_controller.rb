@@ -18,7 +18,7 @@ class CartsController < ApplicationController
         @cart_product.save
         total += @product.price * value.to_f
       end
-      @cart.update( total_price: total)
+      @cart.update(total_price: total)
       update_info_user
       OrderNotifier.received(@cart).deliver
       session[@user_id] = nil

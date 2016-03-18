@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   before_action :check_page, only: [:search]
+  VALID_PATTERN = /(\+|\-|\&|\||\!|\(|\)|\{|\}|\[|\]|\^|\"|\~|\*|\?|\:|\ |\\)/
 
   def search
     @solr = Solr::Connection.new(Rails.configuration.solr_host.to_s, :autocommit => :on )
@@ -20,8 +21,7 @@ class SearchController < ApplicationController
   def get_products(result_products)
     products = []
     result_products.each do |iProduct|
-      product = Product.find(iProduct['id'])
-      products << product
+      products << Product.find(iProduct['id'])
     end
     return products
   end
@@ -31,8 +31,7 @@ class SearchController < ApplicationController
       flash[:danger] = "Keyword is null"
       redirect_to products_path
     else
-      pattern = /(\+|\-|\&|\||\!|\(|\)|\{|\}|\[|\]|\^|\"|\~|\*|\?|\:|\ |\\)/
-      return keyword.gsub(pattern){|match|"\\"  + match}
+      return keyword.gsub(VALID_PATTERN){|match|"\\"  + match}
     end
   end
 
