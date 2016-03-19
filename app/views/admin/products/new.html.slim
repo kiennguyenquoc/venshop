@@ -1,0 +1,26 @@
+- provide(:title, "New Products")
+h2[style="text-align: center;"]
+  | New products 
+.col-9
+  = form_for [:admin, @product] do |f|
+    = render 'shared/error_messages'
+    .field
+      = f.label :name
+      br
+      = f.text_field :name, autofocus: true, class: 'form-control'
+      br
+    .field
+      = f.label :category_id
+      = f.collection_select :category_id, @categories, :id, :name
+    .field
+      = f.label :price
+      = f.number_field :price, class: 'form-control'
+    .field
+      = f.label :image
+      = f.text_field :image, class: 'form-control'
+    .field
+      = f.label :description
+      = f.text_area :description, class: 'form-control', rows: '15'
+    .actions
+      = f.submit "New product", class: "btn btn-primary"
+  = link_to "Back", :back

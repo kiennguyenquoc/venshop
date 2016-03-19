@@ -1,19 +1,19 @@
 /*--------------------------
 RESET
 ---------------------------*/
-html, body, div, span, applet, object, iframe, 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, 
-a, abbr, acronym, address, big, cite, code, 
-del, dfn, em, img, ins, kbd, q, s, samp, 
-small, strike, strong, sub, sup, tt, var, 
-b, u, i, center, 
-dl, dt, dd, ol, ul, li, 
-fieldset, form, label, legend, 
-table, caption, tbody, tfoot, thead, tr, th, td, 
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary, 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video{margin:0; padding:0}
-article, aside, details, figcaption, figure, footer, 
+article, aside, details, figcaption, figure, footer,
 header, hgroup, menu, nav, section{display:block}
 
 table{border-collapse:collapse; border-spacing:0}
@@ -69,8 +69,8 @@ object, embed, video{max-width:100%; height:auto}
 
 .video-container { position: relative; padding-bottom: 45%; padding-top: 30px; height: 0; overflow: hidden; margin-bottom:23px; }
 
-.video-container iframe,  
-.video-container object,  
+.video-container iframe,
+.video-container object,
 .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 .aligncenter{ text-align:center; }
@@ -124,7 +124,7 @@ img.btn_close { float: right;  margin: -20px -20px 0 0;}
 fieldset { border:none; }
 form.signin .textbox label { display:block;  padding-bottom:7px; }
 form.signin .textbox span { display:block; }
-form.signin p, form.signin span { color:#999; font-size:12px; line-height:20px;} 
+form.signin p, form.signin span { color:#999; font-size:12px; line-height:20px;}
 form.signin .textbox input { background:#ddd; padding:6px 10px; width:220px; border:0;-webkit-border-radius:2px;  -moz-border-radius:2px; -o-border-radius:2px; border-radius:2px; }
 form.signin input:-moz-placeholder { color:#353535;}
 form.signin input::-webkit-input-placeholder { color:#353535; font-size:11px;}
@@ -133,7 +133,7 @@ form.signin .button:hover{ background:#252525; -ms-transition: all 0.5s ease-in-
 
 #demo-header{ width: 125px; height:27px; float:right; position: relative; z-index:999; top:4px; margin-right:36px; }
 #cart-link{  position: absolute; background:url(../images/icon-cart.png) no-repeat left center; top: 0px; right: 0px; padding-left:20px; display: block; color: #fff; font-size:12px;}
-#cart-panel{ position: absolute; top: 33px; right: -36px; width:250px; padding: 20px 15px 5px 15px; background:#fff; font-size: 12px; display: none; z-index:9999; float:left; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-bottom:1px solid #e5e5e5;} 
+#cart-panel{ position: absolute; top: 33px; right: -36px; width:250px; padding: 20px 15px 5px 15px; background:#fff; font-size: 12px; display: none; z-index:9999; float:left; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-bottom:1px solid #e5e5e5;}
 #cart-panel .item-cart table{ width:100%; float:left; font-size:12px;}
 #cart-panel .item-cart table tr td{ border-bottom:1px solid #e5e5e5; color:#7e7e7e; margin:0; text-align:left; vertical-align:top; padding:7px 0;}
 #cart-panel .item-cart table tr td.name{ padding:7px 12px;}
@@ -153,7 +153,7 @@ h1.logo a{ width:183px; height:33px; display:block; background:url(../images/log
 .search_bar{ float:right; margin-right:36px;}
 .search_bar fieldset input{ padding:7px 10px; color:#757575; border:0; -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;}
 .search_bar fieldset input.search{ width:200px; background:#fefefe; position:relative; border:1px solid #e5e5e5;}
-.search_bar fieldset input.submit{ background: url(../images/search.png) no-repeat center #f5640c; padding:7px 15px; text-indent:-999999px; border:0;}
+.search_bar fieldset input.submit{ background: url(../images/search.png) no-repeat center #f5640c; padding:7px 15px; text-indent:-999999px; border:0; margin-left: 5px; }
 .search_bar fieldset input.submit:hover{ cursor:pointer;}
 #featured{ float:left; width:100%; margin-bottom:0px;}
 
@@ -262,7 +262,7 @@ div.commentf{ float:left; width:100%;}
   -webkit-border-top-left-radius: 2px;
   -moz-border-radius-topright: 2px;
   -moz-border-radius-topleft: 2px;
-  
+
   }
 #commentform .textarea{ background:#fff; border:1px solid #f0f0f0; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#9a9a9a; height:180px; padding:10px; width:97%; margin-bottom:20px;
   -webkit-border-bottom-right-radius: 2px;
@@ -273,7 +273,7 @@ div.commentf{ float:left; width:100%;}
   -webkit-border-top-left-radius: 2px;
   -moz-border-radius-topright: 2px;
   -moz-border-radius-topleft: 2px;
-  
+
   }
 #commentform label{ font-size:12px; color:#6a6a6a; }
 #commentform #name:focus,#commentform #subject:focus, #commentform #mail:focus, #commentform #website:focus,#commentform #message:focus { border:1px solid #dedede; background:#f7f7f7;}
@@ -313,7 +313,7 @@ div.commentf{ float:left; width:100%;}
 
 .tweet_list { list-style: none; margin: 0; padding: 0; overflow-y: hidden;}
 .tweet_list li { overflow-y: auto; overflow-x: hidden; list-style-type: none; margin-bottom:10px;}
-.tweet_list .tweet_avatar { margin-right: 10px; float: left; } 
+.tweet_list .tweet_avatar { margin-right: 10px; float: left; }
 .tweet_list .tweet_avatar img { vertical-align: middle; }
 
 .ship{ width:40%; float:left; margin-bottom:15px;}
@@ -430,7 +430,7 @@ ul#thumblist li a.zoomThumbActive{ border:1px solid #f5640c;}
 #tab .nav li{ list-style:none; float:left; font-size:12px; margin-right:2px;}
 #tab .nav li.last{ margin-right:0;}
 #tab .nav li a{ display:block; color:#757575; font-weight:600; border:1px solid #e5e5e5; padding:4px 10px; text-decoration:none; color:#181818; background:#fff; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;
-background: 
+background:
     -webkit-gradient(
       linear,
       left bottom,
@@ -439,7 +439,7 @@ background:
       color-stop(4%, #f6f6f6),
       to(#FFFFFF)
     );
-  background: 
+  background:
     -moz-linear-gradient(
       bottom,
       #FFFFFF,
@@ -623,7 +623,7 @@ div.cartoptionbox h4{ margin-bottom:20px;}
 div.cartoptionbox form.ship{ width:100%; float:left;}
 div.cartoptionbox form.ship label{ margin-bottom:5px; display:block; font-size:14px;}
 div.cartoptionbox form.ship select{ border:1px solid #e5e5e5; background:none; padding:7px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;}
-div.cartoptionbox form.ship input.submit{ border:none; background:#f5640c; padding:7px; color:#fff; cursor:pointer; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;} 
+div.cartoptionbox form.ship input.submit{ border:none; background:#f5640c; padding:7px; color:#fff; cursor:pointer; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;}
 
 div.alltotal{ text-align:right; float:right;}
 table.alltotal{ text-align:right; border:1px solid #e5e5e5; float:right; width:100%; margin-bottom:20px;}
@@ -701,7 +701,7 @@ ul.error{ background:#f0807f; border:1px solid #e96f6e; padding:20px 0; -moz-bor
 ul.error li{ line-height:22px; font-size:12px; padding:0 20px; color:#333 !important; font-weight:bold;}
 #note ul{ margin:0; margin-bottom:1.5em; }
 #note ul li{ list-style:none; color:#b41616; background:url(../images/process-stop.png) no-repeat left center; padding-left:25px; margin-left:25px;}
-div.notification_ok{ background:url(../images/process-accept.png) no-repeat left center #c5dc93; padding:20px 0; -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;} 
+div.notification_ok{ background:url(../images/process-accept.png) no-repeat left center #c5dc93; padding:20px 0; -moz-border-radius: 2px; -webkit-border-radius: 2px; -khtml-border-radius: 2px; border-radius: 2px;}
 
 /*-------------*/
 /*   FEATURES  */
@@ -789,7 +789,7 @@ ul.payment li a{ float:left; padding:0;}
 
 @media handheld and (max-width: 600px), screen and (max-device-width: 600px), screen and (max-width: 768px)  {
 #page_wrap, #header_wrap, #footer_wrap{ padding:0 20px;}
-  
+
 section.content{ width:100%; float:left;}
 aside.sidebar{ width:100%; float:left; background:none;}
 aside.sidebar .side{ margin-left:0; width:100%;}
@@ -825,7 +825,7 @@ div.first{ margin-left:0;}
 }
 
 @media handheld and (max-width: 479px), screen and (max-device-width: 479px), screen and (max-width: 479px)  {
-#page_wrap, #header_wrap, #footer_wrap{ padding:0 20px;}  
+#page_wrap, #header_wrap, #footer_wrap{ padding:0 20px;}
 
 nav select {  display: block; float:left; width:70%;}
 
@@ -867,7 +867,7 @@ table.compare tr td img{ width:40px;}
 .feedback-wrap .dvision .feedback div{ width:100% !important;}
 .feedback-wrap .dvision .feedback div h4{ float: none; margin-bottom:0;}
 .feedback-wrap .dvision .feedback div span{ float:left; margin-bottom:20px;}
-  
+
 .one-half{ width:100% !important; float:left; margin-left:0;}
 .one-third{  width:100% !important; float:left; margin-left:0;}
 .one-fourth{ width:100% !important; float:left; margin-left:0;}

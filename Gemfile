@@ -21,6 +21,7 @@ gem 'rsolr', '~> 1.0.12'
 gem 'config'
 gem 'rails-i18n'
 gem 'unicorn'
+gem 'slim', '~> 3.0', '>= 3.0.6'
 
 group :development, :test do
   gem 'byebug'

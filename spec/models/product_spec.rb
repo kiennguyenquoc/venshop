@@ -1,9 +1,9 @@
+require 'byebug'
 require 'spec_helper'
 describe Product do
-  it "is valid with a firstname, lastname and email"
-  it "is invalid without a firstname"
-  it "is invalid without a lastname"
-  it "is invalid without an email address"
-  it "is invalid with a duplicate email address"
-  it "returns a contact's full name as a string"
+  it 'Test create new product' do
+    product = Product.new(name: "Test", category_id: 10, price: 10, description: "test", image: "test image")
+    product.save
+    expect(product.search("est").name).to eq("test")
+  end
 end

@@ -1,0 +1,39 @@
+- provide(:title, "All Users")
+- if notice
+  p#notice
+    = notice
+.col-lg-12
+  h2.text-left
+    | All Users
+  = will_paginate @users
+  table.table.table-hover
+    thead
+      tr
+        th
+          | ID User
+        th
+          | Username
+        th
+          | Email
+        th
+          | Phone
+        th
+          | Address
+        th
+          | Admin
+    tbody
+      - @users.each do |user|
+        tr
+          td
+            = user.id
+          td
+            = user.username
+          td
+            = user.email
+          td
+            = user.phone
+          td
+            = user.address
+          td
+            = link_to "Delete",  admin_user_path(id: user.id), method: :delete, data: { confirm: 'Are you sure?' }
+= will_paginate @users

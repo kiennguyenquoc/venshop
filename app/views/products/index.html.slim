@@ -1,0 +1,11 @@
+- provide(:title, "All Products")
+.col-lg-12
+  h2.text-left
+    | All Products
+= render 'layouts/list_categories'
+.col-md-9[style="text-align: center;"]
+  .row
+    = render 'search/search_box'
+    br
+    = render @products
+  = will_paginate @products
