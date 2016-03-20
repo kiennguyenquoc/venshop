@@ -1,11 +1,138 @@
 - provide(:title, "All Products")
-.col-lg-12
-  h2.text-left
-    | All Products
-= render 'layouts/list_categories'
-.col-md-9[style="text-align: center;"]
-  .row
-    = render 'search/search_box'
-    br
-    = render @products
-  = will_paginate @products
+#page_wrap
+  #container
+    .content-wrap
+      div[style="clear:both; display:block; height:20px"]
+      = render 'static_pages/intro'
+      .container-2
+        section.content
+          .ctrl
+            form.left
+              |  Sort By :  
+              select
+                option
+                  | Position
+                option
+                  | Name
+                option
+                  | Price
+                option
+                  | Rating 
+                option
+                  | Color
+              |     Show:  
+              select
+                option
+                  | 6
+                option
+                  | 10
+                option
+                  | 25
+            span.list-style-buttons
+              = link_to image_tag("grid-view.png", alt: "grid-view"), "#", id: "gridview", class: "switcher"
+              = link_to image_tag("list-view-active.png", alt: "list-grid-view"), "#", id: "gridview", class: "switcher active"
+          ul#products.list.clearfix
+            = render @products
+          ul#pagination
+            = will_paginate @products
+        aside.sidebar
+          .side
+            h4
+              | Category
+            ul.cat
+              li
+                = link_to "Women's Clothes", "javascript:;"
+              li
+                = link_to "Men's Clothes", "javascript:;"
+              li
+                = link_to "Accessories", "javascript:;"
+              li
+                = link_to "Men's Shoes", "javascript:;"
+              li
+                = link_to "Women's Shoes", "javascript:;"
+          .side
+            h4
+              | Bestsellers
+            .entry
+              .da-thumbs
+                div
+                  img[src="images/products/thumb-1.jpg" alt=""]
+                  article.da-animate.da-slideFromRight[style="display: block;"]
+                    p
+                      a.link[href="product-detail.html"]
+              h3
+                a[href="product-detail.html"]
+                  | Athletic Shoes
+              small
+                | $59.95
+            .entry
+              .da-thumbs
+                div
+                  img[src="images/products/thumb-2.jpg" alt=""]
+                  article.da-animate.da-slideFromRight[style="display: block;"]
+                    p
+                      a.link[href="product-detail.html"]
+              h3
+                a[href="product-detail.html"]
+                  | Athletic Shoes
+              small
+                | $59.95
+          .side
+            h4
+              | Recent Blog
+            .entry
+              .da-thumbs
+                div
+                  img[src="images/products/thumb-1.jpg" alt=""]
+                  article.da-animate.da-slideFromRight[style="display: block;"]
+                    p
+                      a.link[href="blog.html"]
+              h3
+                a[href="blog.html"]
+                  | Pellentesque habitant morbi..
+              span
+                a[href="blog.html"]
+                  | Posted on:02/28/13
+            .entry
+              .da-thumbs
+                div
+                  img[src="images/products/thumb-2.jpg" alt=""]
+                  article.da-animate.da-slideFromRight[style="display: block;"]
+                    p
+                      a.link[href="blog.html"]
+              h3
+                a[href="blog.html"]
+                  | Pellentesque habitant morbi ...
+              span
+                a[href="blog.html"]
+                  | Posted on:02/28/13
+          .side
+            h4
+              | Our Customer Love Us!
+            ul.fade
+              li.feed
+                | Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!
+                br
+                small
+                  a[href="#"]
+                    | — Louie Jie Mahusay
+              li.feed
+                | Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!
+                br
+                small
+                  a[href="#"]
+                    | — Louie Jie Mahusay
+              li.feed
+                | Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!
+                br
+                small
+                  a[href="#"]
+                    | — Louie Jie Mahusay
+              li.feed
+                | Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!
+                br
+                small
+                  a[href="#"]
+                    | — Louie Jie Mahusay
+      = render "static_pages/sign_up_newsletter"
+    

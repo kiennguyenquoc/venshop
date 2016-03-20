@@ -4,43 +4,5 @@ nav
 .content-wrap
   #featured
     div[style="clear:both; display:block; height:40px"]
-  #intro
-    .one-fourth.serv.first
-      img[src="images/service-1.png" alt=""]
-      h3
-        = link_to "Free Shipping", "javascript:;"
-      span
-        | Available
-    .one-fourth.serv
-      img[src="images/service-2.png" alt=""]
-      h3
-        = link_to "30 Days Return", "javascript:;"
-      span
-        | Easy Return
-    .one-fourth.serv
-      img[src="images/service-3.png" alt=""]
-      h3
-        = link_to "Call Us", "javascript:;"
-      span
-        | 0163 6509 234
-    .one-fourth.serv
-      img[src="images/service-4.png" alt=""]
-      h3
-        = link_to "Secured", "javascript:;"
-      span
-        | Checkout
-  .container-2
-    div[style="clear:both; display:block; height:40px"]
-    .ship
-      = link_to image_tag("service-1.png", alt:"Free Shipping"), "javascript:;"
-      h4
-        = link_to "Free Shipping", "javascript:;"
-      span
-        | On order over $300
-    .subs
-      h4
-        | Sign up for our Newsletter
-      form.subscribes[action="#" method="post"]
-        fieldset
-          input.subscribe[type="text" name="subscribe" value="Subscribe" onblur="if (this.value == ''){this.value = 'Subscribe'; }" onfocus="if (this.value== 'Subscribe') {this.value = ''; }"]
-          input.submit[type="submit" name="submit" value="Submit"]
+  = render 'static_pages/intro'
+  = render "static_pages/sign_up_newsletter"
