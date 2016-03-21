@@ -1,0 +1,79 @@
+footer
+  .content-wrap
+    .one-fourth.first
+      h4
+        | Information
+      ul
+        li
+          = link_to "About Us", about_path
+        li
+          = link_to "Delivery Information", "javascript:;"
+        li
+          = link_to "Privacy Policy", "javascript:;"
+        li
+          = link_to "Terms & Condition", "javascript:;"
+    .one-fourth
+      h4
+        | Customer Services
+      ul
+        li
+          = link_to "Contact Us", "javascript:;"
+        li
+          = link_to "Shipping Returns", "javascript:;"
+        li
+          = link_to "Secure Shopping", "javascript:;"
+    .one-fourth
+      h4
+        | Extras
+      ul
+        li
+          = link_to "Brands", "javascript:;"
+        li
+          = link_to "Gift Vouchers", "javascript:;"
+        li
+          = link_to "Affiliates", "javascript:;"
+        li
+          = link_to "Special", "javascript:;"
+    .one-fourth
+      h4
+        | My Account
+      ul
+        li
+          = link_to "My Account", "javascript:;"
+        li
+          = link_to "Order History", "javascript:;"
+        li
+          = link_to "Wishlist", "javascript:;"
+        li
+          = link_to "Newsletter", "javascript:;"
+  .content-wrap
+    .social-wrap[style="clear:both; display:block;"]
+    ul.social
+      li
+        = link_to image_tag("social-icon-facebook.png", alt:"Facebook"), "javascript:;", class: "tip", title: "Facebook"
+      li
+        = link_to image_tag("social-icon-dribbble.png", alt:"Dribbble"), "javascript:;", class: "tip", title: "Dribbble"
+      li
+        = link_to image_tag("social-icon-flickr.png", alt:"Flickr"), "javascript:;", class: "tip", title: "Flickr"
+      li
+        = link_to image_tag("social-icon-pinterest.png", alt:"Pinterest"), "javascript:;", class: "tip", title: "Pinterest"
+      li
+        = link_to image_tag("social-icon-twitter.png", alt:"Twitter"), "javascript:;", class: "tip", title: "Twitter"
+      li
+        = link_to image_tag("social-icon-rss.png", alt:"RSS"), "javascript:;", class: "tip", title: "RSS"
+    ul.payment
+      li
+        = link_to image_tag("payment-icon-paypal.png", alt:"Paypal"), "javascript:;", class: "tip", title: "Paypal"
+      li
+        = link_to image_tag("payment-icon-ae.png", alt:"American Express"), "javascript:;", class: "tip", title: "American Express"
+      li
+        = link_to image_tag("payment-icon-discover.png", alt:"Discover"), "javascript:;", class: "tip", title: "Discover"
+      li
+        = link_to image_tag("payment-icon-mastercard.png", alt:"Master Card"), "javascript:;", class: "tip", title: "Master Card"
+      li
+        = link_to image_tag("payment-icon-visa.png", alt:"Visa"), "javascript:;", class: "tip", title: "Visa"
+    p[style="clear:both; display:block;"]
+      | © 2016 
+      = link_to "Shopymart", root_path
+      | , All Rights Reserved. Develop by: 
+      = link_to "Kien Nguyen-Quoc", "//facebook.com/kiennguyenquoc", target: "_blank"

@@ -4,8 +4,8 @@ class SolrModule
     @solr = RSolr.connect :url => Rails.configuration.solr_host.to_s
   end
 
-  def update_solr_index_after_import_product(id, name)
-    %x{curl 'localhost:8080/solr/core0/update?commit=true' -H 'Content-type:application/json' -d '[{"id":"#{id}","name":{"set":"#{name}"}}]'}
+  def update_solr_index_after_import_product(id, product)
+    %x{curl 'localhost:8080/solr/venshop/update?commit=true' -H 'Content-type:application/json' -d '[{"id":"#{id}","name":{"set":"#{product.name}"}, "category_id":"#{product.category_id}"}]'}
   end
 
   def delete_solr_index_after_delete_product(id)

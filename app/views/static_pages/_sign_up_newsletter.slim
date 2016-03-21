@@ -1,0 +1,17 @@
+.container-2
+  div[style="clear:both; display:block; height:40px"]
+  .ship
+    = link_to image_tag("service-1.png"), "javascript:;"
+    h4
+      a[href="#"]
+        | Free Shipping
+    span
+      | On order over $300
+  .subs
+    h4
+      | Sign up for our Newsletter
+    form.subscribes[action="#" method="post"]
+      fieldset
+        input.subscribe[type="text" name="subscribe" value="Subscribe" onblur="if (this.value == ''){this.value = 'Subscribe'; }" onfocus="if (this.value== 'Subscribe') {this.value = ''; }"]
+        | &nbsp;&nbsp;
+        input.submit[type="submit" name="submit" value="Submit"]

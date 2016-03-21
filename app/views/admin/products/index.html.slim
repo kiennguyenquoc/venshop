@@ -1,0 +1,30 @@
+- provide(:title, "All Products")
+- if notice
+  p#notice
+    = notice
+.col-lg-12
+  h2.text-left
+    | All Products
+  table.table.table-hover
+    thead
+      tr
+        th[colspan="3"]
+          = link_to "New product",  new_admin_product_path, :class => "btn btn-primary"
+      tr
+        th
+          | No.
+        th
+          | ID Product
+        th
+          | Product name
+        th
+          | Price
+        th
+          | Image
+        th
+          | Category
+        th
+          | Admins
+    tbody
+      = render "product", products: @products
+= will_paginate @products

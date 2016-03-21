@@ -3,13 +3,12 @@ class Admin::ProductsController < ApplicationController
   require 'uri'
 
   before_action :find_product, only: [:destroy, :edit,:update]
-  before_action :get_categories, only: [:edit,:update, :new,:create]
+  before_action :get_categories, only: [:index, :edit,:update, :new,:create]
   before_action :authenticate_admin!
   before_action :check_page, only: [:index]
 
   def index
     @products = Product.paginate(page: params[:page]).per_page(50)
-    @categories = Category.all
   end
 
   def destroy
@@ -39,7 +38,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      SolrModule.new.update_solr_index_after_import_product(params[:id], product_params[:name])
+      SolrModule.new.update_solr_index_after_import_product(params[:id], @product)
       flash[:success] = "Update product : Success"
       redirect_to admin_products_path
     else

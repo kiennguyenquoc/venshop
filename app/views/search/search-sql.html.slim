@@ -1,0 +1,35 @@
+- provide(:title, "Search Products")
+h2.text-left
+  | Search Products with keyword: 
+  = params[:keyword]
+= will_paginate @products
+.col-md-12[style="text-align: center;"]
+  - if @products!= []
+    - @products.each do |product|
+      .col-sm-4.col-lg-4.col-md-4
+        .thumbnail
+          = image_tag(product.image, alt: product.name, style: 'height: 300px')
+          .caption
+            .div_product_name[style="width: 235px; height: 53px;"]
+              |  <h3 title="
+              = product.name
+              | ">
+              = truncate(product.name, length: 25)
+            p
+              b
+                | Price: 
+              = number_to_currency(product.price/100.000)
+            = form_tag cart_products_path do
+              p
+                = hidden_field_tag :product_id, product.id
+                |  Quantity:
+                b
+                  = number_field_tag :quantity, "1", class: 'form-control'
+                br
+                = submit_tag "Add To cart", :class => "btn btn-primary", :style => "width: 100px"
+            = link_to "More Info", product, :class => "btn btn-default"
+  - else
+    h1
+      |  Not found
+div
+  = will_paginate @products

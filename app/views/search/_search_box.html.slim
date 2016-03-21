@@ -1,0 +1,7 @@
+- if !admin_signed_in?
+  = form_tag search_path, method: :get do
+    .row
+      .col-md-10
+        = text_field_tag :keyword, nil, class: 'form-control', placeholder: 'Search'
+      .col-md-2
+        = submit_tag "Search", :class => "btn btn-primary"

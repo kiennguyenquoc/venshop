@@ -1,0 +1,126 @@
+- provide(:title, "Your Carts")
+#page_wrap
+  #container
+    .content-wrap
+      div[style="clear:both; display:block; height:20px"]
+      = render 'static_pages/intro'
+      .container-2
+        div[style="clear:both; display:block; height:40px"]
+        h2
+          | Shopping Cart  
+          small
+            | Your shopping cart
+        table.shopping-cart
+          tr
+            th.image
+              | Image
+            th.name
+              | Product Name
+            th.model
+              | Model
+            th.quantity
+              | Quantity
+            th.price
+              | Unit Price
+            th.total
+              | Total
+            th.action
+              | Action
+          - total = 0
+          - session[params[:id]].each do |key, value|
+            - product = Product.find(key)
+            tr
+              td.image
+                = link_to image_tag(product.image, title: product.name, alt: "product-item", style: "height: 50px; width: 50px;"), "javascript:;"
+              td.name
+                = link_to truncate(product.name, length: 60), "#"
+              td.model
+                = product.category.name
+              td.quantity
+                = form_tag cart_product_path, id: "update_#{product.id}", method: :PATCH do
+                  = hidden_field_tag :product_id, key
+                  = number_field_tag :quantity, "#{value}", class: 'form-control', :style => "width: 40px"
+              td.price
+                = "$"+(product.price/100.00).to_s
+              td.total
+                = "$"+(product.price/100.00 * value.to_f).to_s
+              td.remove-update
+                = link_to image_tag("remove.png"), cart_product_path(product_id: key, id: params[:id]), data: { confirm: 'Are you sure?' }, method: :delete, class: "tip remove", title: "Remove"
+                | &nbsp;
+                = link_to image_tag("update.png"), "", :onclick => "$('#update_#{product.id}').submit()", class: "tip update", title: "Update"
+              - total += product.price/100.000 * value.to_f
+        .contentbox
+          .cartoptionbox.one-half.first
+            h4
+              |  Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost. 
+            input.radio[type="radio", id="discount"]
+            span
+              | Use Coupon Code
+            br
+            input.radio[type="radio", id="discount"]
+            span
+              | Use Gift Voucher
+            br
+            input.radio[type="radio" id="discount" checked="checked"]
+            span
+              | Estimate Shipping & Taxes
+            br
+            br
+            form.ship[action="#"]
+              h4
+                |  Enter your destination to get a shipping estimate.
+              fieldset
+                .control-group
+                  label
+                    | Select list
+                  select.span3.cartcountry
+                    option
+                      | Country:
+                    option
+                      | Philippines
+                    option
+                      | United States
+                  | &nbsp;&nbsp;
+                  select.span3.cartstate
+                    option
+                      | Region / State:
+                    option
+                      | Manila
+                    option
+                      | Los Angeles
+                  | &nbsp;&nbsp;
+                  input.submit[type="submit" value="Submit"]
+          .alltotal.one-half
+            table.alltotal
+              tr
+                td
+                  span.extra
+                    | Sub-Total :
+                td
+                  span
+                    = total
+              tr
+                td
+                  span.extra
+                    | Eco Tax (-2.00) :
+                td
+                  span
+                    | $0
+              tr
+                td
+                  span.extra
+                    | VAT (18.2%) :
+                td
+                  span
+                    | $0
+              tr
+                td
+                  span.extra.grandtotal
+                    | Total :
+                td
+                  span.grandtotal
+                    = total
+            = link_to 'Continue Shopping', products_path, class: "link_as_btn"
+            = link_to 'Check Out', new_cart_path, class: "link_as_btn"
+        div[style="clear:both; display:block; height:40px"]
+      = render "static_pages/sign_up_newsletter"

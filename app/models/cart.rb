@@ -15,11 +15,7 @@ class Cart < ActiveRecord::Base
   before_save :downcase_email
 
   def add_user_id_and_status(current_user)
-    if current_user
-      self.update(user_id: current_user.id, status: "Checkout")
-    else
-      self.update(user_id: "", status: "Checkout")
-    end
+    current_user ? self.update(user_id: current_user.id, status: "Checkout") : self.update(user_id: "", status: "Checkout")
   end
 
   private

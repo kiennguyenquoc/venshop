@@ -1,0 +1,7 @@
+.col-md-3
+  p.lead
+    | VenShop
+  #searchlist.list-group
+    - @categories.each do |category|
+      - if Product.where(category: category).count() >= 1
+        = link_to "#{ category.name }", category, :class => "list-group-item #{ "active" if category.id == @current_category}"
