@@ -1,0 +1,17 @@
+- products.each_with_index do |product, index|
+  tr
+    td
+      = index+1
+    td
+      = product.id
+    td
+      = product.name
+    td
+      = number_to_currency(product.price/100.00)
+    td
+      = image_tag(product.image, alt: product.name, style: 'height: 50px')
+    td
+      = Category.find(product.category_id).name
+    th
+      = link_to "Delete", admin_product_path(id: product.id), method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to "Edit", edit_admin_product_path(id: product.id)

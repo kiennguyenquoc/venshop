@@ -8,11 +8,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if @user.destroy
-      flash[:success] = "Delete User : Success"
-    else
-      flash[:danger] = "Delete User : Error"
-    end
+    @user.destroy ? flash[:success] = "Delete User : Success" : flash[:danger] = "Delete User : Error"
     redirect_to admin_users_path
   end
 end

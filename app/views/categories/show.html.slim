@@ -1,0 +1,10 @@
+- provide(:title, "Products to category")
+= render 'layouts/list_categories'
+.col-md-9[style="text-align: center;"]
+  .row
+    = render 'search/search_box'
+    h3[style="text-align: center;"]
+      | Products to category: 
+      = @category.name
+    = render @products
+  = will_paginate @products

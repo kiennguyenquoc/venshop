@@ -1,0 +1,41 @@
+li.da-thumbs
+  .product-thumb-hover
+    section.left
+      = image_tag product.image, alt: product.name
+      p.sale
+        | Sale
+      article.da-animate.da-slideFromRight[style="display: block;"]
+        h3
+          = truncate(product.name, length: 100)
+        p
+          a.link.tip[href="product-detail.html" title="View Detail"]
+          |   
+          a.cart.tip[href="cart.html" title="Add to cart"]
+          |    
+          a.zoom.tip[href="images/preview/work_1_l.jpg" rel="prettyPhoto[gallery1]" title="Zoom"]
+  section.center
+    h3
+      |
+      = truncate(product.name, length: 10)
+    em
+      | Category: 
+      = link_to product.category.name, product.category
+  section.right
+    span.price
+      small
+        = (product.price/100.000).to_s + " $"
+      = "  | " + ((product.price + 50)/100.000).to_s + " $"
+    ul.menu-button
+      li
+       = form_tag cart_products_path, :id => "add_#{product.id}" do
+        = link_to "", "", :onclick => "$('#add_#{product.id}').submit()", class: "cart tip", title: "Add to Cart"
+        = hidden_field_tag :product_id, product.id
+        = hidden_field_tag :quantity, "1"
+      li
+        a.zoom.tip[href="images/preview/work_1_l.jpg" rel="prettyPhoto[gallery1]" title="Zoom"]
+      li
+        a.wishlist.tip[href="wishlist.html" title="Add to Wishlist"]
+      li
+        a.compare.tip[href="compare.html" title="Compare"]
+      li
+        a.link.tip[href="product-detail.html" title="View Detail"]

@@ -1,0 +1,77 @@
+- provide(:title, "User Carts")
+h2
+  | Your Cart: 
+  = @user.username
+  | -
+  = @user.email
+table.table.table-hover
+  thead
+    tr
+      th
+        | Product name
+      th
+        | Price
+      th
+        | Quantity
+      th
+        | Total price
+  - @carts_to_user.each do |cart_to_user|
+    - cart_products = cart_to_user.cart_products
+    tr
+      td[colspan="4"]
+        h4
+          b
+            | Cart 
+            = cart_to_user.id
+            | : 
+            = cart_to_user.created_at.to_formatted_s(:long_ordinal)
+    - cart_products.each do |cart_product|
+      - product = Product.find(cart_product.product_id)
+      tr
+        td
+          = product.name
+        td
+          = number_to_currency(product.price/100.00)
+        td
+          = cart_product.number
+        td
+          = number_to_currency(cart_product.price/100.00 * cart_product.number)
+    tr
+      td[colspan="3"]
+        | Total
+      td
+        b
+          = number_to_currency(cart_to_user.total_price/100.00)
+    tr
+      td
+        | Name: 
+      td[colspan="3"]
+        = cart_to_user.full_name
+    tr
+      td
+        | E-Mail: 
+      td[colspan="3"]
+        = cart_to_user.email
+    tr
+      td
+        | Phone: 
+      td[colspan="3"]
+        = cart_to_user.phone
+    tr
+      td
+        | Address: 
+      td[colspan="3"]
+        = cart_to_user.address
+    tr
+      td
+        | Status: 
+      td[colspan="2"]
+        = cart_to_user.status
+      td
+        - if cart_to_user.status != "Finish"
+          = button_to 'Next',admin_cart_path(id: cart_to_user.id, user_id: @user.id), method: :put , class: "btn btn-primary"
+        - else
+          = link_to 'Finished',"#" , class: "btn btn-danger"
+  tr
+    td
+      = link_to 'Back', :back, class: "btn btn-info"

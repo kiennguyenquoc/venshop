@@ -1,0 +1,35 @@
+- provide(:title, "Search Products")
+h3.text-left
+  | Results search : "
+  = params[:keyword]
+  | " - 
+  = @products.count
+  |  resulfs
+.col-md-12[style="text-align: center;"]
+  - if @products!= []
+    - @products.each do |product|
+      .product_item
+        .thumbnail
+          = image_tag(product.image, alt: product.name, class: 'pro_img')
+          .caption
+            .div_product_name
+              |  <h4 title="
+              = product.name
+              | ">
+              = truncate(product.name, length: 25)
+            p
+              b
+                | Price: 
+              = number_to_currency(product.price/100.000)
+            .row
+              = form_tag cart_products_path do
+                .col-sm-12.div-quantity
+                  | Quantity: 
+                  = number_field_tag :quantity, "1", class: 'form-control quantity'
+                .col-sm-12
+                  = submit_tag "Add to cart", :class => "btn btn-primary btn-add-cart"
+                  = link_to "More Info", product, :class => "btn btn-default"
+                = hidden_field_tag :product_id, product.id
+  - else
+    h1
+      |  Not found

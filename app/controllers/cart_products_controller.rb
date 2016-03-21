@@ -1,6 +1,5 @@
 class CartProductsController < ApplicationController
   before_action :set_cart, only: [:create, :update]
-  before_action :check_quantity?, only: [:create]
 
   def create
     product = Product.find(params[:product_id])
@@ -48,9 +47,9 @@ class CartProductsController < ApplicationController
 
   def update_product_to_cart(product_id, number)
     session[@user_id].each do |key, value|
-      if (key == product_id.to_s)
-       session[@user_id][key] = number
-       break
+      if key == product_id.to_s
+        session[@user_id][key] = number
+        break
      end
     end
   end

@@ -1,5 +1,0 @@
-<% provide(:title, "All Categories") %>
-<h1>All Categories</h1>
-<% @categories.each do |category|%>
-  <%= link_to "#{ category.name }", category, :class => "list-group-item" %>
-<% end %>

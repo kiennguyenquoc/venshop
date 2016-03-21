@@ -1,0 +1,26 @@
+- provide(:title, "Order")
+.row
+  - if @cart.errors.any?
+    #error_explanation
+      .alert.alert-danger
+        |  The form contains
+        = pluralize(@cart.errors.count, "error")
+        | .
+      ul
+        - @cart.errors.full_messages.each do |msg|
+          li
+            = msg
+  .col-md-6.col-md-offset-3
+    h1
+      | Đăng ký thông tin nhận hàng
+    = form_for @cart do |f|
+      = f.label :full_name
+      = f.text_field :full_name, class: 'form-control'
+      = f.label :email
+      = f.email_field :email, class: 'form-control'
+      = f.label :address
+      = f.text_field :address, class: 'form-control'
+      = f.label :phone
+      = f.number_field :phone, class: 'form-control'
+      br
+      = f.submit "Save changes", class: "btn btn-primary"
