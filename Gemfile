@@ -22,6 +22,7 @@ gem 'config'
 gem 'rails-i18n'
 gem 'unicorn'
 gem 'slim', '~> 3.0', '>= 3.0.6'
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
