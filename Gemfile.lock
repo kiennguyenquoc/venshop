@@ -92,10 +92,10 @@ GEM
     minitest (5.8.4)
     multi_json (1.11.2)
     multi_xml (0.5.5)
-    mysql2 (0.3.20)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
+    pg (0.18.4)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -121,6 +121,11 @@ GEM
     rails-i18n (4.0.8)
       i18n (~> 0.7)
       railties (~> 4.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.4)
     railties (4.2.2)
       actionpack (= 4.2.2)
       activesupport (= 4.2.2)
@@ -130,7 +135,7 @@ GEM
     rake (11.1.1)
     rdoc (4.2.2)
       json (~> 1.4)
-    responders (2.1.1)
+    responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
     rsolr (1.0.13)
       builder (>= 2.1.2)
@@ -208,9 +213,10 @@ DEPENDENCIES
   figaro
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2 (~> 0.3.18)
+  pg
   rails (= 4.2.2)
   rails-i18n
+  rails_12factor
   rsolr (~> 1.0.12)
   rspec-rails
   sass-rails (~> 5.0)

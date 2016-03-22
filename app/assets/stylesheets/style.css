@@ -816,9 +816,9 @@ nav select {  display: block; float:left; width:40%; margin:20px 36px 20px 36px;
 .feedback-wrap .dvision .feedback div{ width:87% !important;}
 
 .one-half{ width:100% !important; float:left; margin-left:0;}
-.one-third{  width:100 !important%; float:left; margin-left:0;}
+.one-third{  width:100 !important; float:left; margin-left:0;}
 .one-fourth{ width:100% !important; float:left; margin-left:0;}
-.three-fourth{ width:100% !important; float:left; margin-left:0%;}
+.three-fourth{ width:100% !important; float:left; margin-left:0;}
 .one-fifth{ width:100% !important; float:left; margin-left:0;}
 
 div.first{ margin-left:0;}
@@ -871,7 +871,7 @@ table.compare tr td img{ width:40px;}
 .one-half{ width:100% !important; float:left; margin-left:0;}
 .one-third{  width:100% !important; float:left; margin-left:0;}
 .one-fourth{ width:100% !important; float:left; margin-left:0;}
-.three-fourth{ width:100 !important%; float:left; margin-left:0%;}
+.three-fourth{ width:100 !important; float:left; margin-left:0;}
 .one-fifth{ width:100% !important; float:left; margin-left:0;}
 div.first{ margin-left:0;}
 
