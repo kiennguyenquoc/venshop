@@ -14,10 +14,8 @@ class Product < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_cart_product
   before_save :convert_data_product
-
-  def self.search(keyword)
-    Product.where("name like ?", "%#{keyword}%" )
-  end
+  # scope :name_of_scope, ->(parameter_name) {condition whatevere you want to put on scope}
+  scope :search, -> (keyword){ where("name like ?", "%#{keyword}%") }
 
   private
 

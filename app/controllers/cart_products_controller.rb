@@ -5,11 +5,9 @@ class CartProductsController < ApplicationController
     product = Product.find(params[:product_id])
     if check_quantity?
       add_product_to_cart(product.id.to_i, params[:quantity].to_i )
-      redirect_to cart_path(id: @user_id)
-      flash[:success] = 'Products add to cart'
+      redirect_to cart_path(id: @user_id), :success => 'Products add to cart'
     else
-      redirect_to products_path
-      flash[:danger] = 'Errors: Quantity'
+      redirect_to products_path, :danger => 'Errors: Quantity'
     end
   end
 
@@ -17,11 +15,9 @@ class CartProductsController < ApplicationController
     product = Product.find(params[:product_id])
     if check_quantity?
       update_product_to_cart(product.id.to_i, params[:quantity].to_i )
-      redirect_to cart_path(id: @user_id)
-      flash[:success] = 'Update successful'
+      redirect_to cart_path(id: @user_id), :success => 'Update successful'
     else
-      redirect_to cart_path(id: @user_id)
-      flash[:danger] = 'Errors: Quantity'
+      redirect_to cart_path(id: @user_id), :danger => 'Errors: Quantity'
     end
   end
 

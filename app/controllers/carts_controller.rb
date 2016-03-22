@@ -22,8 +22,7 @@ class CartsController < ApplicationController
       update_info_user
       OrderNotifier.received(@cart).deliver
       session[@user_id] = nil
-      flash[:success] = "Email to send"
-      redirect_to products_path
+      redirect_to products_path, :success => "Email to send"
     else
       render :new
     end

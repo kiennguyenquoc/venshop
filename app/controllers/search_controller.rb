@@ -27,12 +27,8 @@ class SearchController < ApplicationController
   end
 
   def escape_characters_in_string(keyword)
-    if keyword.blank?
-      flash[:danger] = "Keyword is null"
-      redirect_to products_path
-    else
-      return keyword.gsub(VALID_PATTERN){|match|"\\"  + match}
-    end
+    return keyword.gsub(VALID_PATTERN){|match|"\\"  + match} unless keyword.blank?
+    redirect_to products_path, :danger => "Keyword is null"
   end
 
 end
